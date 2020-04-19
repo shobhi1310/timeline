@@ -7,7 +7,29 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.header_section{
+  width: 100%;
+  /* overflow: auto; */
+  background-color: aquamarine;
+  height: 50px;
+}
+
+.snackbar{
+  float:left;
+}
+
+.search{
+  float: right;
+  padding: 5px;
+}
+
+.title_content{
+  text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
 }
