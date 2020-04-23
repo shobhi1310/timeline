@@ -20,7 +20,7 @@ const eventsSchema = new Schema({
             ],
         }
     ],
-    date : {type:Date, required:true},   
+    date : {type:String, required:true},
 });
 
 const Events = mongoose.model('Events',eventsSchema);

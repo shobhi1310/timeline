@@ -2,6 +2,18 @@ const router = require('express').Router();
 let Events = require('../models/events.models');
 
 
+router.route('/create/:id').post((req,res)=>{
+    const newEvent = new Events({
+        user_id: req.params.id,
+        event:[],
+        date:req.body.date,
+    });
+
+    newEvent.save()
+    .then(()=> res.json('new timeline created!'))
+    .catch((err)=>{res.status(400).json('Error: ' + err)});
+});
+
 router.route('/add/:id').post((req,res)=>{
     const user_id = req.params.id;
     const date = req.body.date;
@@ -14,11 +26,11 @@ router.route('/add/:id').post((req,res)=>{
     Events.findOneAndUpdate({user_id:user_id,date:date},{$push:{events:event}})
     .then((output)=>{
         res.json(output);
-        // console.log(output);
-    })
+        console.log(output);
+    });
 });
 
-router.route('/add/:id').get((req,res)=>{
+router.route('/:id').get((req,res)=>{
     const user_id = req.params.id;
     const date = req.body.date;
     Events.find({user_id:user_id,date:date})

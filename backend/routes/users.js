@@ -34,7 +34,7 @@ router.route('/add').post((req,res)=>{
     .catch((err)=>{res.status(400).json('Error: ' + err)});
 });
 
-router.route('/add/:id').post((req,res)=>{
+router.route('/update/:id').post((req,res)=>{
     const updatedUser = {
         name : req.body.name,
         username : req.body.username,
