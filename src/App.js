@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header'
 import Populator from './components/Populator'
 import EventAdder from './components/EventAdder'
+import SignUp from './components/SignUp'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 class App extends React.Component{
@@ -11,8 +12,8 @@ class App extends React.Component{
     return (
       <div id="app">
         <Header/>
-        {/* <Populator/>
-        <EventAdder/> */}
+        {/* <Populator/> */}
+        <SignUp/>
       </div>
     )
   }
