@@ -157,3 +157,31 @@ body {
   position: relative;
   vertical-align: middle;
 }
+
+.comment{
+  width: 50%;
+  /* display: flex; */
+  /* flex-direction: column; */
+  margin: 5px;
+}
+
+.icon{
+  width: fit-content;
+  position: relative;
+  float: left;
+}
+
+.dateTime{
+  width: fit-content;
+  text-align: center;
+  position: relative;
+  float: left;
+}
+
+.post{
+  font-size: x-small;
+  width: fit-content;
+  position: relative;
+  float: left;
+  text-align: center;
+}
