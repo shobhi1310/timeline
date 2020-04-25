@@ -10,6 +10,7 @@ import EventFiller from './components/EventFiller'
 import SearchFriends from './components/SearchFriends'
 import Post from './components/Post'
 import CommentPopulator from './components/CommentPopulator'
+import CommentModal from './components/CommentModal'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 class App extends React.Component{
@@ -23,7 +24,8 @@ class App extends React.Component{
         {/* <EventFiller/> */}
         {/* <SearchFriends/> */}
         {/* <Post/> */}
-        <CommentPopulator/>
+        {/* <CommentPopulator/> */}
+        <CommentModal/>
       </div>
     )
   }
