@@ -10,12 +10,13 @@ const eventsSchema = new Schema({
             description :{type:String},
             comments : [
                 {
-                    comment : {type:String},
+                    post : {type:String},
+                    user : {type:Schema.Types.ObjectId},
                 }
             ],
             tagged_photos: [
                 {
-                    image : {type:Buffer}
+                    image : {type:Buffer},
                 }
             ],
         }

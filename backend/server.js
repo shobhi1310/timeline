@@ -22,9 +22,11 @@ connection.once('open', () => {
 
 const usersRouter = require('./routes/users');
 const eventsRouter = require('./routes/events');
+const commentsRouter = require('./routes/comments');
 
 app.use('/users',usersRouter);
 app.use('/events',eventsRouter);
+app.use('/comments',commentsRouter);
 
 app.listen(port, ()=>{
     console.log(`listening on port: ${port}`);
