@@ -8,6 +8,7 @@ import SignUp from './components/SignUp'
 import Profile from './components/Profile'
 import EventFiller from './components/EventFiller'
 import SearchFriends from './components/SearchFriends'
+import Post from './components/Post'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 class App extends React.Component{
@@ -19,7 +20,8 @@ class App extends React.Component{
         {/* <SignUp/> */}
         {/* <Profile/> */}
         {/* <EventFiller/> */}
-        <SearchFriends/>
+        {/* <SearchFriends/> */}
+        <Post/>
       </div>
     )
   }

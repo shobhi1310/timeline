@@ -135,3 +135,25 @@ body {
   left: 20%;
   z-index: 1;
 }
+
+.tweet-body{
+  width:fit-content;
+  margin-left: 60px;
+}
+
+.tweet-body textarea{
+  overflow: hidden;
+  resize: none;
+  height: 80px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid red;
+}
+
+.post-btn{
+  width: fit-content;
+  height: fit-content;
+  float: right;
+  position: relative;
+  vertical-align: middle;
+}
