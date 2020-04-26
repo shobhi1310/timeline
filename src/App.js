@@ -11,6 +11,7 @@ import SearchFriends from './components/SearchFriends'
 import Post from './components/Post'
 import CommentPopulator from './components/CommentPopulator'
 import CommentModal from './components/CommentModal'
+import Home from './components/Home'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 class App extends React.Component{
@@ -25,7 +26,8 @@ class App extends React.Component{
         {/* <SearchFriends/> */}
         {/* <Post/> */}
         {/* <CommentPopulator/> */}
-        <CommentModal/>
+        {/* <CommentModal/> */}
+        <Home/>
       </div>
     )
   }

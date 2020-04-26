@@ -182,3 +182,25 @@ body {
   float: left;
   text-align: center;
 }
+
+.picker{
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+  left: 40%;
+  /* padding: 5px; */
+  margin-top: 10px;
+}
+
+.area{
+  width: fit-content;
+  position: relative;
+  float: right;
+  border-radius: 4px;   
+}
+
+.calendar-icon{
+  width: fit-content;
+  position: relative;
+  float: right;
+}
