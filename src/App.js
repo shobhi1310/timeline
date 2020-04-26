@@ -12,6 +12,7 @@ import Post from './components/Post'
 import CommentPopulator from './components/CommentPopulator'
 import CommentModal from './components/CommentModal'
 import Home from './components/Home'
+import SearchPopulator from './components/SearchPopulator'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 class App extends React.Component{
@@ -23,11 +24,12 @@ class App extends React.Component{
         {/* <SignUp/> */}
         {/* <Profile/> */}
         {/* <EventFiller/> */}
-        {/* <SearchFriends/> */}
+        <SearchFriends/>
         {/* <Post/> */}
         {/* <CommentPopulator/> */}
         {/* <CommentModal/> */}
-        <Home/>
+        {/* <Home/> */}
+        {/* <SearchPopulator/> */}
       </div>
     )
   }
