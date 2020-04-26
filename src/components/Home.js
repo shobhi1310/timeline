@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import Populator from './Populator';
+import EventAdder from './EventAdder';
 
 export class Home extends Component {
     render() {
@@ -19,6 +20,7 @@ export class Home extends Component {
                     <Populator/>
                     <Populator/>
                 </div>
+                <EventAdder/>
             </div>
         )
     }
