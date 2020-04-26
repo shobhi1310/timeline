@@ -20,6 +20,7 @@ class Header extends React.Component{
                         <a className="nav-item nav-link" href="#">Search Friends</a>
                     </div>
                 </div>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="log-out">Log Out</button>
             </nav>
         )
     }

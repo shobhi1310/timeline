@@ -21,7 +21,9 @@ class Populator extends React.Component {
                     </div>
                     <div className="comments">
                         <div className="comment_bubble">
+                            {/* <button className="btn"> */}
                             <span className="material-icons">mode_comment</span>
+                            {/* </button> */}
                         </div>
                         <div className="count">2</div>
                     </div>
