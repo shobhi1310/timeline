@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import COmmentModal, { CommentModal } from './CommentModal';
+
 class Populator extends React.Component {
     render(){
         let date = new Date();
@@ -20,7 +22,7 @@ class Populator extends React.Component {
                         <div className="timestamp">{time}</div>
                     </div>
                     <div className="comments">
-                        <div className="comment_bubble">
+                        <div type="button" className="comment_bubble" data-toggle="modal" data-target="#commentModal">
                             {/* <button className="btn"> */}
                             <span className="material-icons">mode_comment</span>
                             {/* </button> */}
@@ -28,6 +30,7 @@ class Populator extends React.Component {
                         <div className="count">2</div>
                     </div>
                 </div>
+                <CommentModal/>
             </div>
         )
     }

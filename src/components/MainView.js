@@ -23,7 +23,7 @@ export class MainView extends Component {
                     <Populator/>
                     <Populator/>
                 </div>
-                <Link to="/event-adder" >
+                <Link to="/add-event" >
                     <EventAdder/>
                 </Link>
             </div>

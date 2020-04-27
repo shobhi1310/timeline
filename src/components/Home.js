@@ -1,29 +1,18 @@
 import React, { Component } from 'react';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
 
-
-import Populator from './Populator';
-import EventAdder from './EventAdder';
-import Signup from './SignUp';
+import MainView from './MainView';
+import SignUp from './SignUp';
+import Login from './Login';
 
 export class Home extends Component {
+    constructor(props){
+        super(props);
+    }
+
     render() {
         return (
             <div>
-                <div className="picker">
-                    <div className="area">
-                        <DatePicker/>
-                    </div>
-                    <div className="calendar-icon">
-                        <span class="material-icons">event</span>
-                    </div>
-                </div>
-                <div id="timeline">
-                    <Populator/>
-                    <Populator/>
-                </div>
-                <EventAdder/>
+                <MainView/>
             </div>
         )
     }
