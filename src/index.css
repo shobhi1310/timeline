@@ -45,7 +45,7 @@ body {
 .content{
   /* margin: 20px; */
   width: 81vw;
-  background-color: brown;
+  /* background-color: brown; */
   /* position: absolute; */
   left: 7%;
   /* clear: left; */
@@ -55,7 +55,7 @@ body {
 .node{
   height: fit-content;
   width: fit-content;
-  background-color: aqua;
+  /* background-color: aqua; */
   float: left;
   margin-left: 10px;
 }
@@ -80,7 +80,7 @@ body {
 .context{
   padding-left: 10px;
   float: left;
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
   width: fit-content;
   font-size: x-small;
   position: relative;
@@ -211,7 +211,7 @@ body {
 .friend-container{
   display: flex;
   flex-direction: column;
-  background-color: coral;
+  /* background-color: coral; */
   height: 70vh;
   overflow-y: auto;
 }
