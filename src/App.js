@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Header from './components/Header'
 import Home from './components/Home'
+import Profile from './components/Profile'
+import SearchFriend from './components/SearchFriends'
 
 class App extends React.Component{
   render(){
@@ -13,6 +15,8 @@ class App extends React.Component{
       <Router>
         <Header/>
         <Route path='/'exact component={Home} />
+        <Route path='/profile'exact component={Profile} />
+        <Route path='/search-friend'exact component={SearchFriend} />
       </Router>
     )
   }

@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+
 
 class Header extends React.Component{
     constructor(props){
@@ -15,9 +17,9 @@ class Header extends React.Component{
                 </button>
                 <div className="collapse navbar-collapse" id="extraNavs">
                     <div className="navbar-nav">
-                        <a className="nav-item nav-link active" href="#">Home <span className="sr-only">(current)</span></a>
-                        <a className="nav-item nav-link" href="#">Profile</a>
-                        <a className="nav-item nav-link" href="#">Search Friends</a>
+                        <Link className="nav-item nav-link active" to="/">Home <span className="sr-only">(current)</span></Link>
+                        <Link className="nav-item nav-link" to="/profile">Profile</Link>
+                        <Link className="nav-item nav-link" to="/search-friend">Search Friends</Link>
                     </div>
                 </div>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="log-out">Log Out</button>
