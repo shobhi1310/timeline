@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import Populator from './Populator';
 import EventAdder from './EventAdder';
+import Signup from './SignUp';
 
 export class Home extends Component {
     render() {

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
-export default class SignUp extends Component {
+export class Login extends Component {
     render() {
         return (
             <div className="container" style={{marginTop:"10px"}}>
-                <h2 className="style-4">Sign Up</h2>
-                <p>For the exciting features</p>
+                <h2 className="style-4">Log in</h2>
+                <p>And enjoy</p>
                 <form>
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">username</label>
@@ -20,18 +20,14 @@ export default class SignUp extends Component {
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Confirm Password</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="confirm-password"/>
+                            <button type="submit" class="btn btn-primary">Login</button>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Sign Up</button>
-                        </div>
-                    </div>
-                </form>  
+                </form>
             </div>
         )
     }
 }
+
+export default Login
