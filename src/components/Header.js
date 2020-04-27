@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+import LogOut from './LogOut';
 
 class Header extends React.Component{
     constructor(props){
@@ -22,7 +23,7 @@ class Header extends React.Component{
                         <Link className="nav-item nav-link" to="/search-friend">Search Friends</Link>
                     </div>
                 </div>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="log-out">Log Out</button>
+                <LogOut/>
             </nav>
         )
     }
