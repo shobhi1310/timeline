@@ -1,36 +1,19 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header'
-import Populator from './components/Populator'
-import EventAdder from './components/EventAdder'
-import SignUp from './components/SignUp'
-import Profile from './components/Profile'
-import EventFiller from './components/EventFiller'
-import SearchFriends from './components/SearchFriends'
-import Post from './components/Post'
-import CommentPopulator from './components/CommentPopulator'
-import CommentModal from './components/CommentModal'
-import Home from './components/Home'
-import SearchPopulator from './components/SearchPopulator'
+import {Route, BrowserRouter as Router} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'
+
+import Header from './components/Header'
+import Home from './components/Home'
 
 class App extends React.Component{
   render(){
     return (
-      <div id="app">
+      <Router>
         <Header/>
-        {/* <Populator/> */}
-        {/* <SignUp/> */}
-        {/* <Profile/> */}
-        {/* <EventFiller/> */}
-        <SearchFriends/>
-        {/* <Post/> */}
-        {/* <CommentPopulator/> */}
-        {/* <CommentModal/> */}
-        {/* <Home/> */}
-        {/* <SearchPopulator/> */}
-      </div>
+        <Route path='/'exact component={Home} />
+      </Router>
     )
   }
 }
