@@ -8,6 +8,7 @@ import Header from './components/Header'
 import Home from './components/Home'
 import Profile from './components/Profile'
 import SearchFriend from './components/SearchFriends'
+import EventFiller from './components/EventFiller'
 
 class App extends React.Component{
   render(){
@@ -15,8 +16,9 @@ class App extends React.Component{
       <Router>
         <Header/>
         <Route path='/'exact component={Home} />
-        <Route path='/profile'exact component={Profile} />
-        <Route path='/search-friend'exact component={SearchFriend} />
+        <Route path='/profile' component={Profile} />
+        <Route path='/search-friend' component={SearchFriend} />
+        <Route path='/add-event' component={EventFiller} />
       </Router>
     )
   }
