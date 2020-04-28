@@ -16,7 +16,25 @@ export class Home extends Component {
             occupation: '',
             start_time: '',
             end_time:'',
-            gravatar:''
+            gravatar:'',
+            logged_in: false
+        }
+    }
+
+    componentWillMount=()=>{
+        const {step, logged_in} = this.state;
+
+        if(window.sessionStorage.getItem('u_id')){
+            this.setState({
+                logged_in : true,
+                step: 4
+            });
+        }
+
+        if(this.props.state){
+            this.setState({
+                step: this.props.state
+            });
         }
     }
 

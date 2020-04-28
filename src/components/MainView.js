@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 
 import Populator from './Populator';
 import EventAdder from './EventAdder';
-import Signup from './SignUp';
 
 export class MainView extends Component {
     render() {

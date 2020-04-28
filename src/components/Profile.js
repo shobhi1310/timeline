@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 
 export class Profile extends Component {
+
+    continue=()=>{
+        this.props.nextStep();
+    }
+
     render() {
         const {values, handleChange} = this.props;
         const occupations = ['student','working offcial','free lancer','hobbyst','other...'];
@@ -48,7 +53,7 @@ export class Profile extends Component {
                         <div class="form-group row" style={{marginTop:"50px"}}>
                             <div class="col-sm-2"></div>
                             <div class="col-sm-2">
-                                <input id="profile-save" class="btn btn-primary" type="submit" value="Save"/>
+                                <input id="profile-save" class="btn btn-primary" type="submit" value="Save" onClick={this.continue} />
                             </div>
                             <div class="col-sm-2">
                                 <input class="btn btn-danger" type="submit" value="Edit"/>
