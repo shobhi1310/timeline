@@ -236,3 +236,16 @@ body {
   font-weight: 400;
   text-align: center;
 }
+
+.react-datepicker__input-container input{
+  border-radius: 10px;
+  border: 1px solid #140af1;
+  text-align: center;
+}
+
+#timeline p {
+  text-align: center;
+  font-family: 'Spartan', sans-serif;
+  font-size: 112px;
+  margin-top: 2vh;
+}

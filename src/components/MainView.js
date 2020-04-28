@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.min.css';
 import {Link} from 'react-router-dom';
 
 import Populator from './Populator';
@@ -27,8 +27,10 @@ export class MainView extends Component {
                 <div className="picker">
                     <div className="area">
                         <DatePicker
+                        dateFormat="dd-MM-yyyy"
                         selected={date}
                         onChange={this.handleDateChange}
+                        maxDate={new Date()}
                         />
                     </div>
                     <div className="calendar-icon">
@@ -36,8 +38,9 @@ export class MainView extends Component {
                     </div>
                 </div>
                 <div id="timeline">
-                    <Populator/>
-                    <Populator/>
+                    {/* <Populator/> */}
+                    {/* <Populator/> */}
+                    <p>Sorry!! no events</p>
                 </div>
                 <Link to="/add-event" >
                     <EventAdder/>

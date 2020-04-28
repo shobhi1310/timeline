@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 
 export default class EventFiller extends Component {
+    handleSubmit=(e)=>{
+        e.preventDefault();
+        window.location = '/';
+    }
     render() {
         return (
             <div className="container" style={{marginTop:"2%",position:"absolute",left:"20%"}}>
@@ -27,7 +31,7 @@ export default class EventFiller extends Component {
                     <div class="form-group row">
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
-                            <input class="btn btn-success" type="submit" value="Add Event"/>
+                            <input class="btn btn-success" type="submit" value="Add Event" onClick={this.handleSubmit} />
                         </div>
                     </div>
                 </form>
