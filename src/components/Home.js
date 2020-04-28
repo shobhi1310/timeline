@@ -13,7 +13,7 @@ export class Home extends Component {
             username: '',
             password: '',
             name: '',
-            occupation: '',
+            occupation: 'student',
             start_time: '',
             end_time:'',
             gravatar:'',
