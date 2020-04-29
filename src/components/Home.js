@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import MainView from './MainView';
 import SignUp from './SignUp';
@@ -9,7 +10,7 @@ export class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
-            step : 3,
+            step : 1,
             username: '',
             password: '',
             name: '',
@@ -25,16 +26,28 @@ export class Home extends Component {
         const {step, logged_in} = this.state;
 
         if(window.sessionStorage.getItem('u_id')){
-            this.setState({
-                logged_in : true,
-                step: 4
-            });
-        }
-
-        if(this.props.step){
-            this.setState({
-                step: this.props.step
-            });
+            const id = window.sessionStorage.getItem('u_id');
+            const url = 'http://localhost:5000/users/details/'+id;
+            let toStep = 4;
+            axios.get(url)
+            .then(res=>{
+                const {name, username, password, occupation, start_time, end_time, gravatar} = res.data;
+                
+                if(this.props.step){
+                    toStep = this.props.step;
+                }
+                this.setState({
+                    logged_in : true,
+                    step: toStep,
+                    name: name,
+                    username: username,
+                    password: password,
+                    occupation: occupation,
+                    start_time: start_time,
+                    end_time: end_time,
+                    gravatar: gravatar
+                });
+            })
         }
     }
 

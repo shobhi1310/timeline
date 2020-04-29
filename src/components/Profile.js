@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 
 export class Profile extends Component {
     state={
@@ -14,7 +15,19 @@ export class Profile extends Component {
     }
 
     handleSubmit=(e)=>{
-        this.props.nextStep();
+        e.preventDefault();
+        const {values} = this.props;
+        if(window.sessionStorage.getItem('u_id')){
+            const u_id = window.sessionStorage.getItem('u_id')
+            const url = 'http://localhost:5000/users/update/' + u_id; 
+            
+            axios.post(url,values)
+            .then((res)=>{
+                console.log(res);
+                window.location = '/';
+            })
+        }
+        // this.props.nextStep();
     }
 
     render() {

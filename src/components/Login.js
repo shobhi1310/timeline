@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import querystring from 'querystring';
 
 axios.defaults.headers.common = {
     "Content-Type": "application/json"
@@ -21,7 +20,8 @@ export class Login extends Component {
         axios.post('http://localhost:5000/users',user)
         .then((res)=>{
             if(res.data.length!==0){
-                window.sessionStorage.setItem('u_id','something');
+                // console.log(res.data[0]._id);
+                window.sessionStorage.setItem('u_id',res.data[0]._id);
                 window.location = '/';
             }else{
                 document.getElementById('password').className += ' is-invalid';

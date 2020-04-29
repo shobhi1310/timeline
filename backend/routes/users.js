@@ -14,6 +14,16 @@ router.route('/').post((req,res)=>{
     })
 });
 
+router.route('/details/:id').get((req,res)=>{
+    const _id = req.params.id;
+    Users.findById(_id)
+    .then(user=>{
+        res.json(user);
+    }).catch((err)=>{
+        res.json('Error: '+err);
+    })
+});
+
 router.route('/add').post((req,res)=>{
     const name = req.body.name;
     const username = req.body.username;
@@ -43,7 +53,7 @@ router.route('/update/:id').post((req,res)=>{
         password : req.body.password,
         gravatar : req.body.gravatar,
         occupation : req.body.occupation,
-        time_range : req.body.time_range,
+        time_range : req.body.start_time + '-' + req.body.end_time,
     }
     Users.findByIdAndUpdate(req.params.id,updatedUser)
     .then(()=>res.json('User updated'))

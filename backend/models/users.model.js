@@ -8,7 +8,8 @@ const userSchema = new Schema({
     password: {type:String,required:true},
     gravatar: {type:Buffer},
     occupation: {type:String,required:true},
-    time_range: {type:String,required:true},
+    start_time: {type:String,required:true},
+    end_time: {type:String,required:true}
 },{
     timestamps: true,
 });

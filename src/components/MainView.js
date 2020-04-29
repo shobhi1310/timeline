@@ -2,16 +2,21 @@ import React, { Component } from 'react'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.min.css';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 import Populator from './Populator';
 import EventAdder from './EventAdder';
 
 export class MainView extends Component {
     state={
-        date: new Date()
+        date: new Date(),
+        eventPresent: false
     };
 
-    componentWillMount=()=>{
+    componentWillMount=()=>{};
+
+    componentDidMount=()=>{
+        console.log(this.state.date);
     };
 
     handleDateChange=(date)=>{
