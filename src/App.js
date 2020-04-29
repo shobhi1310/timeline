@@ -16,7 +16,7 @@ class App extends React.Component{
       <Router>
         <Header/>
         <Route path='/'exact component={Home} />
-        <Route path='/profile' render={(props)=><Home {...props} state={3} />} />
+        <Route path='/profile' render={(props)=><Home {...props} step={3} />} />
         <Route path='/search-friend' component={SearchFriend} />
         <Route path='/add-event' component={EventFiller} />
       </Router>

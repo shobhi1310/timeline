@@ -9,7 +9,7 @@ export class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
-            step : 1,
+            step : 3,
             username: '',
             password: '',
             name: '',
@@ -31,9 +31,9 @@ export class Home extends Component {
             });
         }
 
-        if(this.props.state){
+        if(this.props.step){
             this.setState({
-                step: this.props.state
+                step: this.props.step
             });
         }
     }
@@ -60,14 +60,16 @@ export class Home extends Component {
 
     render() {
         const {step} = this.state;
-        const {name, usernamse, password, occupation, start_time, end_time, gravatar} = this.state;
-        const values = {name, usernamse, password, occupation, start_time, end_time, gravatar};
+        const {name, username, password, occupation, start_time, end_time, gravatar} = this.state;
+        const values = {name, username, password, occupation, start_time, end_time, gravatar};
 
         switch (step) {
             case 1:
                 return(
                     <Login
                     nextStep={this.nextStep}
+                    values={values}
+                    handleChange={this.handleChange}
                     />
                 )
             case 2:

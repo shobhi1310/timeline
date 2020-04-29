@@ -1,9 +1,11 @@
 const router = require('express').Router();
 let Users = require('../models/users.model');
 
-router.route('/').get((req,res)=>{
+router.route('/').post((req,res)=>{
     const username = req.body.username;
     const password = req.body.password;
+    console.log(req.body);
+    // console.log(username+' '+password);
     Users.find({username:username,password:password})
     .then(user=>{
         res.json(user);

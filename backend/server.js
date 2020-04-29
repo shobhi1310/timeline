@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose =  require('mongoose');
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
 
 require('dotenv').config();
 
@@ -8,7 +10,8 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(cors());
-app.use(express.json());
+// app.use(express.json());
+app.use(jsonParser);
 
 // const uri = 'mongodb+srv://timeline:timeline@cluster0-uf51i.gcp.mongodb.net/test?retryWrites=true&w=majority';
 // console.log(uri);
