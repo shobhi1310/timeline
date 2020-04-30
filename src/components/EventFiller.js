@@ -5,9 +5,15 @@ export default class EventFiller extends Component {
         e.preventDefault();
         window.location = '/';
     }
+    previous=()=>{
+        this.props.prevStep();
+    }
     render() {
         return (
             <div className="container" style={{marginTop:"2%",position:"absolute",left:"20%"}}>
+                <div>
+                    <button type="button" className="btn btn-warning" onClick={this.previous}>Back</button>
+                </div>
                 <h2>Add your event</h2>
                 <form>
                     <div class="form-group row">
