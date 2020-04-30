@@ -23,7 +23,9 @@ class Header extends React.Component{
                         <Link className="nav-item nav-link" to="/search-friend">Search Friends</Link>
                     </div>
                 </div>
-                <LogOut/>
+                {
+                (window.sessionStorage.getItem('u_id')) ? (<LogOut/>) : ('')
+                }
             </nav>
         )
     }
