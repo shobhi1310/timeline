@@ -4,8 +4,6 @@ let Users = require('../models/users.model');
 router.route('/').post((req,res)=>{
     const username = req.body.username;
     const password = req.body.password;
-    console.log(req.body);
-    // console.log(username+' '+password);
     Users.find({username:username,password:password})
     .then(user=>{
         res.json(user);
@@ -55,7 +53,8 @@ router.route('/update/:id').post((req,res)=>{
         password : req.body.password,
         gravatar : req.body.gravatar,
         occupation : req.body.occupation,
-        time_range : req.body.start_time + '-' + req.body.end_time,
+        start_time : req.body.start_time,
+        end_time: req.body.end_time
     }
     Users.findByIdAndUpdate(req.params.id,updatedUser)
     .then(()=>res.json('User updated'))
