@@ -5,6 +5,7 @@ import MainView from './MainView';
 import SignUp from './SignUp';
 import Profile from './Profile';
 import Login from './Login';
+import EventFiller from './EventFiller';
 
 export class Home extends Component {
     constructor(props){
@@ -18,10 +19,11 @@ export class Home extends Component {
             start_time: '',
             end_time:'',
             gravatar:'',
-            logged_in: false
+            logged_in: false,
+            date: new Date(),
+            stringDate:'',
         }
     }
-
     componentWillMount=()=>{
         const {step, logged_in} = this.state;
 
@@ -45,7 +47,8 @@ export class Home extends Component {
                     occupation: occupation,
                     start_time: start_time,
                     end_time: end_time,
-                    gravatar: gravatar
+                    gravatar: gravatar,
+                    stringDate: this.formatDate(this.state.date)
                 });
             })
         }
@@ -71,10 +74,33 @@ export class Home extends Component {
         });
     }
 
+    handleDateChange=(date)=>{
+        this.setState({
+            date : date,
+            stringDate: this.formatDate(date)
+        });
+    }
+
+    formatDate=(date)=>{
+        var dd = date.getDate(); 
+        var mm = date.getMonth() + 1; 
+  
+        var yyyy = date.getFullYear(); 
+        if (dd < 10) { 
+            dd = '0' + dd; 
+        } 
+        if (mm < 10) { 
+            mm = '0' + mm; 
+        } 
+        var today = dd + '-' + mm + '-' + yyyy;
+        return today;
+    }
+
     render() {
         const {step} = this.state;
-        const {name, username, password, occupation, start_time, end_time, gravatar} = this.state;
+        const {name, username, password, occupation, start_time, end_time, gravatar, date, stringDate} = this.state;
         const values = {name, username, password, occupation, start_time, end_time, gravatar};
+        const dates = { date, stringDate};
 
         switch (step) {
             case 1:
@@ -104,7 +130,18 @@ export class Home extends Component {
                 )
             case 4:
                 return(
-                    <MainView/>
+                    <MainView
+                    dates={dates}
+                    nextStep={this.nextStep}
+                    dateChange={this.handleDateChange}
+                    />
+                )
+            case 5:
+                return(
+                    <EventFiller
+                    dates={dates}
+                    prevStep={this.prevStep}
+                    />
                 )
         }
     }

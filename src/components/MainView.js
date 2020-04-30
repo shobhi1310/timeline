@@ -9,31 +9,23 @@ import EventAdder from './EventAdder';
 
 export class MainView extends Component {
     state={
-        date: new Date(),
         eventPresent: false
     };
 
-    componentWillMount=()=>{};
-
-    componentDidMount=()=>{
-        console.log(this.state.date);
-    };
-
     handleDateChange=(date)=>{
-        this.setState({
-            date : date
-        });
+        this.props.dateChange(date);
     }
 
     render() {
-        const {date} = this.state;
+        const {dates} = this.props;
+        const {nextStep} = this.props;
         return (
             <div>
                 <div className="picker">
                     <div className="area">
                         <DatePicker
                         dateFormat="dd-MM-yyyy"
-                        selected={date}
+                        selected={dates.date}
                         onChange={this.handleDateChange}
                         maxDate={new Date()}
                         />
@@ -47,9 +39,9 @@ export class MainView extends Component {
                     {/* <Populator/> */}
                     <p>Sorry!! no events</p>
                 </div>
-                <Link to="/add-event" >
-                    <EventAdder/>
-                </Link>
+                <EventAdder
+                nextStep={nextStep}
+                />
             </div>
         )
     }
