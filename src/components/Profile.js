@@ -23,7 +23,7 @@ export class Profile extends Component {
             
             axios.post(url,values)
             .then((res)=>{
-                window.location = '/';
+                window.location = '/profile';
             })
         }else{
             const url = 'http://localhost:5000/users/create';
