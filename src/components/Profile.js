@@ -23,11 +23,16 @@ export class Profile extends Component {
             
             axios.post(url,values)
             .then((res)=>{
-                console.log(res);
+                window.location = '/';
+            })
+        }else{
+            const url = 'http://localhost:5000/users/create';
+            axios.post(url,values)
+            .then((res)=>{
+                window.sessionStorage.setItem('u_id',res.data._id);
                 window.location = '/';
             })
         }
-        // this.props.nextStep();
     }
 
     render() {

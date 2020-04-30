@@ -24,13 +24,14 @@ router.route('/details/:id').get((req,res)=>{
     })
 });
 
-router.route('/add').post((req,res)=>{
+router.route('/create').post((req,res)=>{
     const name = req.body.name;
     const username = req.body.username;
     const password = req.body.password;
     const gravatar = req.body.gravatar;
     const occupation = req.body.occupation;
-    const time_range = req.body.time_range;
+    const start_time = req.body.start_time;
+    const end_time = req.body.end_time;
 
     const newUser = new Users({
         name,
@@ -38,11 +39,12 @@ router.route('/add').post((req,res)=>{
         password,
         gravatar,
         occupation,
-        time_range,
+        start_time,
+        end_time
     });
 
     newUser.save()
-    .then(()=> res.json('User added!'))
+    .then((user)=> res.json(user))
     .catch((err)=>{res.status(400).json('Error: ' + err)});
 });
 
