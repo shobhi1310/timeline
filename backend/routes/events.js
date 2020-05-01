@@ -30,11 +30,14 @@ router.route('/add/:id').post((req,res)=>{
     });
 });
 
-router.route('/:id').get((req,res)=>{
+router.route('/:id/:date').get((req,res)=>{
     const user_id = req.params.id;
-    const date = req.body.date;
+    const date = req.params.date;
+    console.log(req.body);
     Events.find({user_id:user_id,date:date})
-    .then(event=>{res.json(event)})
+    .then(event=>{
+        res.json(event)
+    })
     .catch((error)=>{res.status(400).json('Error: '+error)})
 });
 

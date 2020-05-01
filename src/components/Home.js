@@ -22,25 +22,27 @@ export class Home extends Component {
             logged_in: false,
             date: new Date(),
             stringDate:'',
+            exists: false,
             events : []
         }
     }
     componentWillMount=()=>{
-        const {step, logged_in, date} = this.state;
+        const {step, logged_in, date, stringDate} = this.state;
 
         if(window.sessionStorage.getItem('u_id')){
             const id = window.sessionStorage.getItem('u_id');
             const url = 'http://localhost:5000/users/details/'+id;
-            const eventListUrl = 'http://localhost:5000/events/'+id;
+            var checkdate = this.formatDate(date);
+            const eventListUrl = 'http://localhost:5000/events/'+id+'/'+checkdate;
             let toStep = 4;
+            var fetchedEvents = [];
+            axios.get(eventListUrl)
+            .then((res)=>{
+                fetchedEvents = res.data;
+            })
             axios.get(url)
             .then(res=>{
                 const {name, username, password, occupation, start_time, end_time, gravatar} = res.data;
-                var events;
-                axios.get(eventListUrl,date)
-                .then((res)=>{
-                    events = res.data;
-                })
 
                 if(this.props.step){
                     toStep = this.props.step;
@@ -56,7 +58,7 @@ export class Home extends Component {
                     end_time: end_time,
                     gravatar: gravatar,
                     stringDate: this.formatDate(this.state.date),
-                    events: events
+                    events: fetchedEvents
                 });
             })
         }
@@ -83,10 +85,16 @@ export class Home extends Component {
     }
 
     handleDateChange=(date)=>{
-        this.setState({
-            date : date,
-            stringDate: this.formatDate(date)
-        });
+        const id = window.sessionStorage.getItem('u_id');
+        const eventListUrl = 'http://localhost:5000/events/'+id+'/'+this.formatDate(date);
+        axios.get(eventListUrl)
+        .then((res)=>{
+            this.setState({
+                date : date,
+                stringDate: this.formatDate(date),
+                events : res.data
+            });
+        })
     }
 
     formatDate=(date)=>{
@@ -148,6 +156,7 @@ export class Home extends Component {
             case 5:
                 return(
                     <EventFiller
+                    values={values}
                     dates={dates}
                     prevStep={this.prevStep}
                     />
