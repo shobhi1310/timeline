@@ -22,19 +22,26 @@ export class Home extends Component {
             logged_in: false,
             date: new Date(),
             stringDate:'',
+            events : []
         }
     }
     componentWillMount=()=>{
-        const {step, logged_in} = this.state;
+        const {step, logged_in, date} = this.state;
 
         if(window.sessionStorage.getItem('u_id')){
             const id = window.sessionStorage.getItem('u_id');
             const url = 'http://localhost:5000/users/details/'+id;
+            const eventListUrl = 'http://localhost:5000/events/'+id;
             let toStep = 4;
             axios.get(url)
             .then(res=>{
                 const {name, username, password, occupation, start_time, end_time, gravatar} = res.data;
-                
+                var events;
+                axios.get(eventListUrl,date)
+                .then((res)=>{
+                    events = res.data;
+                })
+
                 if(this.props.step){
                     toStep = this.props.step;
                 }
@@ -48,7 +55,8 @@ export class Home extends Component {
                     start_time: start_time,
                     end_time: end_time,
                     gravatar: gravatar,
-                    stringDate: this.formatDate(this.state.date)
+                    stringDate: this.formatDate(this.state.date),
+                    events: events
                 });
             })
         }
@@ -98,8 +106,8 @@ export class Home extends Component {
 
     render() {
         const {step} = this.state;
-        const {name, username, password, occupation, start_time, end_time, gravatar, date, stringDate} = this.state;
-        const values = {name, username, password, occupation, start_time, end_time, gravatar};
+        const {name, username, password, occupation, start_time, end_time, gravatar, date, stringDate, events} = this.state;
+        const values = {name, username, password, occupation, start_time, end_time, gravatar, events};
         const dates = { date, stringDate};
 
         switch (step) {
@@ -134,6 +142,7 @@ export class Home extends Component {
                     dates={dates}
                     nextStep={this.nextStep}
                     dateChange={this.handleDateChange}
+                    formatDate={this.formatDate}
                     />
                 )
             case 5:

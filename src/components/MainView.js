@@ -9,16 +9,21 @@ import EventAdder from './EventAdder';
 
 export class MainView extends Component {
     state={
-        eventPresent: false
+        eventPresent: false,
+        events:[]
     };
 
     handleDateChange=(date)=>{
         this.props.dateChange(date);
     }
 
+    componentWillMount=()=>{}
+
     render() {
-        const {dates} = this.props;
-        const {nextStep} = this.props;
+        const {dates, nextStep, formatDate} = this.props;
+        var today = new Date();
+        today = formatDate(today);
+        console.log(dates.date+' '+today)
         return (
             <div>
                 <div className="picker">
@@ -35,13 +40,13 @@ export class MainView extends Component {
                     </div>
                 </div>
                 <div id="timeline">
-                    {/* <Populator/> */}
-                    {/* <Populator/> */}
-                    <p>Sorry!! no events</p>
+                    <Populator/>
+                    <Populator/>
+                    {/* <p>Sorry!! no events</p> */}
                 </div>
-                <EventAdder
-                nextStep={nextStep}
-                />
+                {
+                    (dates.stringDate === today) ? (<EventAdder nextStep={nextStep} />) : ('')
+                }
             </div>
         )
     }
