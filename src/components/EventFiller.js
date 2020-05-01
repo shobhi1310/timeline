@@ -5,7 +5,7 @@ export default class EventFiller extends Component {
     state={
         title:'',
         description:'',
-        photos:[]
+        tagged_photos:[]
     }
     componentWillMount=()=>{
         const {values,dates} = this.props;
@@ -16,10 +16,30 @@ export default class EventFiller extends Component {
             .then((res)=>{console.log(res.data)})
         }
         // console.log(values.events);
+        var now = new Date();
+        var time = now.toTimeString();
+        console.log(time);
     }
     handleSubmit=(e)=>{
-        e.preventDefault();
-        window.location = '/';
+        // e.preventDefault();
+        const {dates} = this.props;
+        const {title, description, tagged_photos} = this.state
+        const currDate = new Date();
+        const currTime = currDate.getTime();
+        const id = window.sessionStorage.getItem('u_id');
+        const addUrl = 'http://localhost:5000/events/add/'+id;
+        const event = {
+            title : title,
+            description : description,
+            tagged_photos : tagged_photos,
+            date : dates.stringDate,
+            time : currTime
+        }
+        axios.post(addUrl,event)
+        .then((res)=>{
+            console.log(res.data);
+        })
+        // window.location = '/';
     }
     previous=()=>{
         // this.props.prevStep();
@@ -37,7 +57,7 @@ export default class EventFiller extends Component {
                     <button type="button" className="btn btn-warning" onClick={this.previous}>Back</button>
                 </div>
                 <h2>Add your event</h2>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Title</label>
                         <div class="col-sm-5">
@@ -59,7 +79,7 @@ export default class EventFiller extends Component {
                     <div class="form-group row">
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
-                            <input class="btn btn-success" type="submit" value="Add Event" onClick={this.handleSubmit} />
+                            <input class="btn btn-success" type="submit" value="Add Event" />
                         </div>
                     </div>
                 </form>
