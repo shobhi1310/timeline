@@ -27,7 +27,7 @@ export class Home extends Component {
             diff : []
         }
     }
-    componentWillMount=()=>{
+    componentDidMount=()=>{
         const {step, logged_in, date, stringDate} = this.state;
 
         if(window.sessionStorage.getItem('u_id')){

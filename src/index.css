@@ -249,3 +249,12 @@ body {
   margin-top: 2vh;
   visibility: hidden;
 }
+
+.comment_bubble{
+  border: white;
+  background-color: white;
+  /* padding: 0; */
+  height: fit-content;
+  margin: 0;
+  padding-bottom: 0px;
+}

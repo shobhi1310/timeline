@@ -1,10 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import COmmentModal, { CommentModal } from './CommentModal';
+import CommentModal from './CommentModal';
 
 class Populator extends React.Component {
+
+    state={
+        disabled : false
+    }
+
+    componentWillMount=()=>{
+        const {event} = this.props;
+        if(event.comments.length===0){
+            this.setState({
+                disabled : true
+            })
+        }
+    }
+
     render(){
+        const {disabled} = this.state
         const {event, styler} = this.props;
         return (
             <div className="holder">
@@ -21,11 +36,11 @@ class Populator extends React.Component {
                         <div className="timestamp">{event.time}</div>
                     </div>
                     <div className="comments" style={{top:styler}} >
-                        <div type="button" className="comment_bubble" data-toggle="modal" data-target="#commentModal">
+                        <button type="button" className="comment_bubble" data-toggle="modal" data-target="#commentModal" id="toggler" disabled={disabled}>
                             {/* <button className="btn"> */}
                             <span className="material-icons">mode_comment</span>
                             {/* </button> */}
-                        </div>
+                        </button>
                         <div className="count">{event.comments.length}</div>
                     </div>
                 </div>
