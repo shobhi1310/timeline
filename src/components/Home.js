@@ -148,6 +148,7 @@ export class Home extends Component {
                 return(
                     <MainView
                     dates={dates}
+                    events={events}
                     nextStep={this.nextStep}
                     dateChange={this.handleDateChange}
                     formatDate={this.formatDate}

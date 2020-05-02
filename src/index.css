@@ -243,9 +243,10 @@ body {
   text-align: center;
 }
 
-#timeline p {
+#no-event p {
   text-align: center;
   font-family: 'Spartan', sans-serif;
   font-size: 112px;
   margin-top: 2vh;
+  visibility: hidden;
 }

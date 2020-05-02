@@ -8,19 +8,14 @@ import Populator from './Populator';
 import EventAdder from './EventAdder';
 
 export class MainView extends Component {
-    state={
-        eventPresent: false,
-        events:[]
-    };
+
 
     handleDateChange=(date)=>{
         this.props.dateChange(date);
     }
 
-    componentWillMount=()=>{}
-
     render() {
-        const {dates, nextStep, formatDate} = this.props;
+        const {dates, nextStep, formatDate, events} = this.props;
         var today = new Date();
         today = formatDate(today);
         console.log(dates.date+' '+today)
@@ -40,9 +35,20 @@ export class MainView extends Component {
                     </div>
                 </div>
                 <div id="timeline">
-                    <Populator/>
-                    <Populator/>
-                    {/* <p>Sorry!! no events</p> */}
+                    {
+                        (events.length!==0)?
+                        (
+                            (events[0].events).map((event)=>{
+                                return(
+                                    <Populator event={event} />
+                                )
+                            })
+                        )
+                        : ('')
+                    }
+                </div>
+                <div id="no-event">
+                    <p>Sorry!! no events</p>
                 </div>
                 {
                     (dates.stringDate === today) ? (<EventAdder nextStep={nextStep} />) : ('')
