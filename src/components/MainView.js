@@ -8,17 +8,44 @@ import Populator from './Populator';
 import EventAdder from './EventAdder';
 
 export class MainView extends Component {
-
+    state={
+        diff : []
+    }
 
     handleDateChange=(date)=>{
         this.props.dateChange(date);
     }
 
+    componentWillMount=()=>{
+        const {events} = this.props;
+        var diff = [];
+        if(events.length!==0){
+            (events[0].events).map((event)=>{
+                diff.push(event.milliTime);
+            })
+        }
+    }
+
+    combiner=(events,diff)=>{
+        var combined = [];
+        if(events.length!==0){
+            var set = {};
+            for(var i=0;i<events[0].events.length;i++){
+                set = {
+                    event : events[0].events[i],
+                    diff : diff[i]
+                }
+                combined.push(set); 
+            }
+        }
+        return combined;
+    }
+
     render() {
-        const {dates, nextStep, formatDate, events} = this.props;
+        const {dates, nextStep, formatDate, events, diff} = this.props;
         var today = new Date();
         today = formatDate(today);
-        console.log(dates.date+' '+today)
+        var combined = this.combiner(events,diff)
         return (
             <div>
                 <div className="picker">
@@ -36,11 +63,11 @@ export class MainView extends Component {
                 </div>
                 <div id="timeline">
                     {
-                        (events.length!==0)?
+                        (combined.length!==0)?
                         (
-                            (events[0].events).map((event)=>{
+                            (combined).map((each)=>{
                                 return(
-                                    <Populator event={event} />
+                                    <Populator event={each.event} styler={each.diff} />
                                 )
                             })
                         )

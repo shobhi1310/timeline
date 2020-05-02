@@ -23,7 +23,8 @@ export class Home extends Component {
             date: new Date(),
             stringDate:'',
             exists: false,
-            events : []
+            events : [],
+            diff : []
         }
     }
     componentWillMount=()=>{
@@ -36,9 +37,11 @@ export class Home extends Component {
             const eventListUrl = 'http://localhost:5000/events/'+id+'/'+checkdate;
             let toStep = 4;
             var fetchedEvents = [];
+            var diff = [];
             axios.get(eventListUrl)
             .then((res)=>{
                 fetchedEvents = res.data;
+                diff = this.diffSetter(res.data)
             })
             axios.get(url)
             .then(res=>{
@@ -58,7 +61,8 @@ export class Home extends Component {
                     end_time: end_time,
                     gravatar: gravatar,
                     stringDate: this.formatDate(this.state.date),
-                    events: fetchedEvents
+                    events: fetchedEvents,
+                    diff : diff
                 });
             })
         }
@@ -92,9 +96,42 @@ export class Home extends Component {
             this.setState({
                 date : date,
                 stringDate: this.formatDate(date),
-                events : res.data
+                events : res.data,
+                diff : this.diffSetter(res.data)
             });
         })
+    }
+
+    diffSetter=(events)=>{
+        var diff = [];
+        if(events.length!==0){
+            (events[0].events).map((event)=>{
+                diff.push(event.milliTime);
+            })
+        }
+        for(var i=1;i<diff.length;i++){
+            diff[i] = diff[i] - diff[i-1];
+        }
+        for(var i=1;i<diff.length;i++){
+            diff[i] = this.scalingUnit(diff[i]);
+        }
+        diff[0] = "0px";
+        return diff;
+    }
+
+    scalingUnit=(milliTImeDiff)=>{
+        var secondsTimeDiff = milliTImeDiff / 1000;
+        if(secondsTimeDiff >= 7200){
+            return "70px";
+        }else if(secondsTimeDiff >=3600 && secondsTimeDiff < 7200){
+            return "65px";
+        }else if(secondsTimeDiff >=3000 && secondsTimeDiff < 3600){
+            return "60px";
+        }else if(secondsTimeDiff >=1800 && secondsTimeDiff < 3000){
+            return "40px";
+        }else{
+            return "20px";
+        }
     }
 
     formatDate=(date)=>{
@@ -114,7 +151,7 @@ export class Home extends Component {
 
     render() {
         const {step} = this.state;
-        const {name, username, password, occupation, start_time, end_time, gravatar, date, stringDate, events} = this.state;
+        const {name, username, password, occupation, start_time, end_time, gravatar, date, stringDate, events, diff} = this.state;
         const values = {name, username, password, occupation, start_time, end_time, gravatar, events};
         const dates = { date, stringDate};
 
@@ -149,6 +186,7 @@ export class Home extends Component {
                     <MainView
                     dates={dates}
                     events={events}
+                    diff={diff}
                     nextStep={this.nextStep}
                     dateChange={this.handleDateChange}
                     formatDate={this.formatDate}

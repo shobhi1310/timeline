@@ -62,7 +62,7 @@ body {
 
 .line {
   border-left: 4px solid green;
-  height: 50px;
+  /* height: 20px;                   this is to be controlled */
   position: relative;
   left: 50%;
   margin-left: -2px;
@@ -80,11 +80,10 @@ body {
 .context{
   padding-left: 10px;
   float: left;
-  /* background-color: blueviolet; */
   width: fit-content;
   font-size: x-small;
   position: relative;
-  top: 50px; /* this is to be controlled */
+  /* top: 20px;                      this is to be controlled */
 }
 
 .title{
@@ -97,7 +96,7 @@ body {
 }
 
 .comments{
-  top: 50px;
+  /* top: 20px;                      this is to be controlled */
   position: relative;
   float: right;
   width: fit-content;

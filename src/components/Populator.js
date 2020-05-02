@@ -5,24 +5,22 @@ import COmmentModal, { CommentModal } from './CommentModal';
 
 class Populator extends React.Component {
     render(){
-        const {event} = this.props;
-        let date = new Date();
-        let time = date.toTimeString()
+        const {event, styler} = this.props;
         return (
             <div className="holder">
                 <div className="content">
                     <div className="node">
-                        <div className="line"></div>
+                        <div className="line" style={{height:styler}}></div>
                         <div className="avatar">
                             {/* gravatar size now taken 24px */}
                             <img src="assets/ceo.png" alt="gravatar"/>
                         </div>
                     </div>
-                    <div className="context">
+                    <div className="context" style={{top:styler}} >
                         <div className="title">{event.title}</div>
                         <div className="timestamp">{event.time}</div>
                     </div>
-                    <div className="comments">
+                    <div className="comments" style={{top:styler}} >
                         <div type="button" className="comment_bubble" data-toggle="modal" data-target="#commentModal">
                             {/* <button className="btn"> */}
                             <span className="material-icons">mode_comment</span>
