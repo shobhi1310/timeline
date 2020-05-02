@@ -21,7 +21,8 @@ router.route('/add/:id').post((req,res)=>{
         "title":req.body.title,
         'description':req.body.description,
         'tagged_photos':req.body.tagged_photos,
-        'time': req.body.time
+        'milliTime': req.body.milliTime,
+        'time' : req.body.time
     }
     // var exists;
     Events.findOneAndUpdate({user_id:user_id,date:date},{$push:{events:event}})

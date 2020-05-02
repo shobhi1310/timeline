@@ -5,6 +5,7 @@ import COmmentModal, { CommentModal } from './CommentModal';
 
 class Populator extends React.Component {
     render(){
+        const {event} = this.props;
         let date = new Date();
         let time = date.toTimeString()
         return (
@@ -18,8 +19,8 @@ class Populator extends React.Component {
                         </div>
                     </div>
                     <div className="context">
-                        <div className="title">id diam vel</div>
-                        <div className="timestamp">{time}</div>
+                        <div className="title">{event.title}</div>
+                        <div className="timestamp">{event.time}</div>
                     </div>
                     <div className="comments">
                         <div type="button" className="comment_bubble" data-toggle="modal" data-target="#commentModal">
@@ -27,7 +28,7 @@ class Populator extends React.Component {
                             <span className="material-icons">mode_comment</span>
                             {/* </button> */}
                         </div>
-                        <div className="count">2</div>
+                        <div className="count">{event.comments.length}</div>
                     </div>
                 </div>
                 <CommentModal/>

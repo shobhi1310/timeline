@@ -19,6 +19,7 @@ const eventsSchema = new Schema({
                     image : {type:Buffer},
                 }
             ],
+            milliTime : {type:String, required:true},
             time : {type:String, required:true}
         }
     ],

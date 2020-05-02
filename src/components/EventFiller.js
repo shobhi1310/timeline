@@ -25,7 +25,8 @@ export default class EventFiller extends Component {
         const {dates} = this.props;
         const {title, description, tagged_photos} = this.state
         const currDate = new Date();
-        const currTime = currDate.getTime();
+        const milliTime = currDate.getTime();
+        const time = currDate.toTimeString();
         const id = window.sessionStorage.getItem('u_id');
         const addUrl = 'http://localhost:5000/events/add/'+id;
         const event = {
@@ -33,7 +34,8 @@ export default class EventFiller extends Component {
             description : description,
             tagged_photos : tagged_photos,
             date : dates.stringDate,
-            time : currTime
+            milliTime : milliTime,
+            time: time
         }
         axios.post(addUrl,event)
         .then((res)=>{
