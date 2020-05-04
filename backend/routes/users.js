@@ -62,8 +62,8 @@ router.route('/update/:id').post((req,res)=>{
 });
 
 router.route('/search/:name').get((req,res)=>{
-    const username = req.params.name;
-    Users.find({username: new RegExp('^'+username,"gi")})
+    const name = req.params.name;
+    Users.find({name: new RegExp('^'+name,"gi")})
     .then((users)=>{
         res.json(users);
     })
