@@ -21,7 +21,9 @@ export class SearchFriends extends Component {
         const searchUrl = 'http://localhost:5000/users/search/'+name;
         axios.get(searchUrl)
         .then((res)=>{
-            console.log(res.data)
+            this.setState({
+                friend_list : res.data
+            })
         })
     }
 
@@ -45,7 +47,7 @@ export class SearchFriends extends Component {
                     {
                         (friend_list).map((friend)=>{
                             return(
-                                <SearchPopulatr/>
+                                <SearchPopulatr friend={friend} />
                             )
                         })
                     }
