@@ -263,3 +263,7 @@ body {
   margin: 0;
   padding-bottom: 0px;
 }
+
+#comment-box{
+  visibility: hidden;
+}

@@ -7,7 +7,7 @@ export class CommentModal extends Component {
     render() {
         const {closeComments, comments, admin} = this.props;
         return (
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog" role="document" id="comment-box" >
                     <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalCenterTitle">Comments</h5>

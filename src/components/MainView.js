@@ -46,7 +46,7 @@ export class MainView extends Component {
     showComments=(e)=>{
         const {events} = this.props;
         const searchID = e.target.id;
-        console.log(searchID)
+        // console.log(searchID)
         for(var i=0;i<events[0].events.length;i++){
             if(searchID === events[0].events[i]._id){
                 this.setState({
@@ -54,9 +54,11 @@ export class MainView extends Component {
                 })
             }
         }
+        document.getElementById('comment-box').style.visibility = 'visible';
     }
 
     closeComments=()=>{
+        document.getElementById('comment-box').style.visibility = 'hidden';
         this.setState({
             comments : []
         })
@@ -105,10 +107,7 @@ export class MainView extends Component {
                         )
                     }
                 </div>
-                {
-                    (comments.length>0) ?
-                    (<CommentModal comments={comments} closeComments={this.closeComments} admin={admin} />) : null
-                }
+                <CommentModal comments={comments} closeComments={this.closeComments} admin={admin} />
                 {
                     (admin && dates.stringDate === today) ? (<EventAdder nextStep={nextStep} />) : ('')
                 }
