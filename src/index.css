@@ -267,3 +267,42 @@ body {
 #comment-box{
   visibility: hidden;
 }
+
+.profile-box{
+  border: solid red 2px;
+  width: 15vw;
+  position: absolute;
+  right: 5%;
+  top: 80px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.friend-profile-icon{
+  text-align: center;
+}
+
+.friend-id{
+  text-align: center;
+}
+
+.friend-content{
+  font-size: small;
+  margin: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.friend-name{
+  display: flex;
+  flex-direction: row;
+}
+.friend-occupation{
+  display: flex;
+  flex-direction: row;
+}
+.friend-worktime{
+  display: flex;
+  flex-direction: row;
+}

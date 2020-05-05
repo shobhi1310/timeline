@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import MainView from './MainView';
+import FriendProfile from './FriendProfile';
 
 export class Friend extends Component {
     constructor(props){
@@ -40,7 +41,7 @@ export class Friend extends Component {
             })
             axios.get(url)
             .then(res=>{
-                const {name, username, password, occupation, start_time, end_time, gravatar} = res.data;
+                const {name, username, occupation, start_time, end_time, gravatar} = res.data;
 
                 if(this.props.step){
                     toStep = this.props.step;
@@ -139,15 +140,20 @@ export class Friend extends Component {
         const values = {name, username, password, occupation, start_time, end_time, gravatar, events, admin};
         const dates = { date, stringDate};
         return (
-            <MainView
-            admin = {admin}
-            dates={dates}
-            events={events}
-            diff={diff}
-            nextStep={this.nextStep}
-            dateChange={this.handleDateChange}
-            formatDate={this.formatDate}
-            />
+            <div>
+                <MainView
+                admin = {admin}
+                dates={dates}
+                events={events}
+                diff={diff}
+                nextStep={this.nextStep}
+                dateChange={this.handleDateChange}
+                formatDate={this.formatDate}
+                />
+                <FriendProfile
+                values={values}
+                />
+            </div>
         )
     }
 }
