@@ -35,7 +35,7 @@ body {
   }
 }
 .holder{
-  margin-left: 10vw;
+  margin-left: 5vw;
   /* left: 11px; */
   width: fit-content;
   display: flex;
@@ -44,7 +44,7 @@ body {
 
 .content{
   /* margin: 20px; */
-  width: 81vw;
+  width: 60vw;
   /* background-color: brown; */
   /* position: absolute; */
   left: 7%;
@@ -218,6 +218,11 @@ body {
 .friend-holder{
   /* width: fit-content; */
   margin: 5px;
+}
+
+.friend-holder:hover{
+  background-color: #f7d8bb49;
+  cursor: pointer;
 }
 
 .friend-icon{
