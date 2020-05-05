@@ -10,8 +10,8 @@ class Populator extends React.Component {
     }
 
     componentWillMount=()=>{
-        const {event} = this.props;
-        if(event.comments.length===0){
+        const {event, admin} = this.props;
+        if(admin && event.comments.length===0){
             this.setState({
                 disabled : true
             })

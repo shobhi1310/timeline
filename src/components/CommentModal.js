@@ -5,7 +5,7 @@ import Post from './Post'
 
 export class CommentModal extends Component {
     render() {
-        const {closeComments, comments} = this.props;
+        const {closeComments, comments, admin} = this.props;
         return (
             <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -23,7 +23,9 @@ export class CommentModal extends Component {
                                 )
                             })
                         }
-                        <Post/>
+                        {
+                            (!admin) ? (<Post/>) : null
+                        }
                     </div>
                     </div>
                 </div>

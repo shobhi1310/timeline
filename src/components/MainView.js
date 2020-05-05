@@ -46,6 +46,7 @@ export class MainView extends Component {
     showComments=(e)=>{
         const {events} = this.props;
         const searchID = e.target.id;
+        console.log(searchID)
         for(var i=0;i<events[0].events.length;i++){
             if(searchID === events[0].events[i]._id){
                 this.setState({
@@ -63,7 +64,7 @@ export class MainView extends Component {
 
     render() {
         const {comments} = this.state;
-        const {dates, nextStep, formatDate, events, diff} = this.props;
+        const {dates, nextStep, formatDate, events, diff, admin} = this.props;
         var today = new Date();
         today = formatDate(today);
         var combined = this.combiner(events,diff)
@@ -88,7 +89,8 @@ export class MainView extends Component {
                         (
                             (combined).map((each)=>{
                                 return(
-                                    <Populator 
+                                    <Populator
+                                    admin={admin}
                                     event={each.event} 
                                     styler={each.diff} 
                                     showComments={this.showComments}
@@ -105,10 +107,10 @@ export class MainView extends Component {
                 </div>
                 {
                     (comments.length>0) ?
-                    (<CommentModal comments={comments} closeComments={this.closeComments} />) : null
+                    (<CommentModal comments={comments} closeComments={this.closeComments} admin={admin} />) : null
                 }
                 {
-                    (dates.stringDate === today) ? (<EventAdder nextStep={nextStep} />) : ('')
+                    (admin && dates.stringDate === today) ? (<EventAdder nextStep={nextStep} />) : ('')
                 }
             </div>
         )

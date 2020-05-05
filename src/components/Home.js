@@ -11,6 +11,7 @@ export class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
+            admin : false,
             step : 1,
             username: '',
             password: '',
@@ -51,6 +52,7 @@ export class Home extends Component {
                     toStep = this.props.step;
                 }
                 this.setState({
+                    admin : true,
                     logged_in : true,
                     step: toStep,
                     name: name,
@@ -151,8 +153,8 @@ export class Home extends Component {
 
     render() {
         const {step} = this.state;
-        const {name, username, password, occupation, start_time, end_time, gravatar, date, stringDate, events, diff} = this.state;
-        const values = {name, username, password, occupation, start_time, end_time, gravatar, events};
+        const {name, username, password, occupation, start_time, end_time, gravatar, date, stringDate, events, diff, admin} = this.state;
+        const values = {name, username, password, occupation, start_time, end_time, gravatar, events, admin};
         const dates = { date, stringDate};
 
         switch (step) {
@@ -184,6 +186,7 @@ export class Home extends Component {
             case 4:
                 return(
                     <MainView
+                    admin={admin}
                     dates={dates}
                     events={events}
                     diff={diff}

@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Header from './components/Header'
 import Home from './components/Home'
-import FriendView from './components/FriendView'
+import Friend from './components/Friend'
 import SearchFriend from './components/SearchFriends'
 import EventFiller from './components/EventFiller'
 
@@ -19,7 +19,7 @@ class App extends React.Component{
         <Route path='/profile' render={(props)=><Home {...props} step={3} />} />
         <Route path='/search-friend' component={SearchFriend} />
         <Route path='/add-event' component={EventFiller} />
-        <Route path='/friend' component={FriendView} />
+        <Route path='/friend' component={Friend} />
       </Router>
     )
   }

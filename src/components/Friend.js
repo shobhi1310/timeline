@@ -3,10 +3,11 @@ import axios from 'axios'
 
 import MainView from './MainView';
 
-export class FriendView extends Component {
+export class Friend extends Component {
     constructor(props){
         super(props);
         this.state = {
+            admin: '',
             username: '',
             name: '',
             occupation: '',
@@ -45,6 +46,7 @@ export class FriendView extends Component {
                     toStep = this.props.step;
                 }
                 this.setState({
+                    admin : false,
                     name: name,
                     username: username,
                     occupation: occupation,
@@ -133,11 +135,12 @@ export class FriendView extends Component {
         return today;
     }
     render() {
-        const {name, username, password, occupation, start_time, end_time, gravatar, date, stringDate, events, diff} = this.state;
-        const values = {name, username, password, occupation, start_time, end_time, gravatar, events};
+        const {name, username, password, occupation, start_time, end_time, gravatar, date, stringDate, events, diff, admin} = this.state;
+        const values = {name, username, password, occupation, start_time, end_time, gravatar, events, admin};
         const dates = { date, stringDate};
         return (
             <MainView
+            admin = {admin}
             dates={dates}
             events={events}
             diff={diff}
@@ -149,4 +152,4 @@ export class FriendView extends Component {
     }
 }
 
-export default FriendView
+export default Friend
