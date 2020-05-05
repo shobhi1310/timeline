@@ -96,12 +96,13 @@ export class MainView extends Component {
                                 )
                             })
                         )
-                        : ('')
+                        : (
+                            <div id="no-event">
+                                <p>Sorry!! no events</p>
+                            </div>
+                        )
                     }
                 </div>
-                {/* <div id="no-event">
-                    <p>Sorry!! no events</p>
-                </div> */}
                 {
                     (comments.length>0) ?
                     (<CommentModal comments={comments} closeComments={this.closeComments} />) : null
