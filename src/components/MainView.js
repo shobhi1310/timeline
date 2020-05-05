@@ -6,10 +6,12 @@ import axios from 'axios';
 
 import Populator from './Populator';
 import EventAdder from './EventAdder';
+import CommentModal from './CommentModal';
 
 export class MainView extends Component {
     state={
-        diff : []
+        diff : [],
+        comments: []
     }
 
     handleDateChange=(date)=>{
@@ -41,7 +43,26 @@ export class MainView extends Component {
         return combined;
     }
 
+    showComments=(e)=>{
+        const {events} = this.props;
+        const searchID = e.target.id;
+        for(var i=0;i<events[0].events.length;i++){
+            if(searchID === events[0].events[i]._id){
+                this.setState({
+                    comments : events[0].events[i].comments
+                })
+            }
+        }
+    }
+
+    closeComments=()=>{
+        this.setState({
+            comments : []
+        })
+    }
+
     render() {
+        const {comments} = this.state;
         const {dates, nextStep, formatDate, events, diff} = this.props;
         var today = new Date();
         today = formatDate(today);
@@ -67,16 +88,24 @@ export class MainView extends Component {
                         (
                             (combined).map((each)=>{
                                 return(
-                                    <Populator event={each.event} styler={each.diff} />
+                                    <Populator 
+                                    event={each.event} 
+                                    styler={each.diff} 
+                                    showComments={this.showComments}
+                                    />
                                 )
                             })
                         )
                         : ('')
                     }
                 </div>
-                <div id="no-event">
+                {/* <div id="no-event">
                     <p>Sorry!! no events</p>
-                </div>
+                </div> */}
+                {
+                    (comments.length>0) ?
+                    (<CommentModal comments={comments} closeComments={this.closeComments} />) : null
+                }
                 {
                     (dates.stringDate === today) ? (<EventAdder nextStep={nextStep} />) : ('')
                 }

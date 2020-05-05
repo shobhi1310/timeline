@@ -20,7 +20,7 @@ class Populator extends React.Component {
 
     render(){
         const {disabled} = this.state
-        const {event, styler} = this.props;
+        const {event, styler, showComments} = this.props;
         return (
             <div className="holder">
                 <div className="content">
@@ -36,15 +36,12 @@ class Populator extends React.Component {
                         <div className="timestamp">{event.time}</div>
                     </div>
                     <div className="comments" style={{top:styler}} >
-                        <button type="button" className="comment_bubble" data-toggle="modal" data-target="#commentModal" id="toggler" disabled={disabled}>
-                            {/* <button className="btn"> */}
-                            <span className="material-icons">mode_comment</span>
-                            {/* </button> */}
+                        <button type="button" className="comment_bubble" data-toggle="modal" data-target="#commentModal" id="toggler" disabled={disabled} onClick={showComments} >
+                            <span className="material-icons" id={event._id} >mode_comment</span>
                         </button>
                         <div className="count">{event.comments.length}</div>
                     </div>
                 </div>
-                <CommentModal/>
             </div>
         )
     }

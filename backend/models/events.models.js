@@ -12,6 +12,7 @@ const eventsSchema = new Schema({
                 {
                     post : {type:String},
                     user : {type:Schema.Types.ObjectId},
+                    gravatar: {type:Buffer}
                 }
             ],
             tagged_photos: [
