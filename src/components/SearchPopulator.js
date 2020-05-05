@@ -5,7 +5,7 @@ export class SearchPopulator extends Component {
     redirect=()=>{
         const {friend} = this.props
         window.sessionStorage.setItem('friend_id',friend._id);
-        // window.location = '/'
+        window.location = '/friend'
     }
 
     render() {
