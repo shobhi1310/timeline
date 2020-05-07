@@ -104,7 +104,7 @@ export class MainView extends Component {
                             })
                         )
                         : (
-                            <div id="no-event">
+                            <div id="no-event" className="container" >
                                 <p>Sorry!! no events</p>
                             </div>
                         )

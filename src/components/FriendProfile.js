@@ -29,15 +29,15 @@ export class FriendProfile extends Component {
                 <div className="friend-id">{values.username}</div>
                 <div className="friend-content">
                     <div className="friend-name">
-                        <div>name: </div>
+                        <strong>name: </strong>
                         <div>{values.name}</div>
                     </div>
                     <div className="friend-occupation">
-                        <div>occupation: </div>
+                        <strong >occupation: </strong>
                         <div>{values.occupation}</div>
                     </div>
                     <div className="friend-worktime">
-                        <div>work-time: </div>
+                        <strong >work-time: </strong>
                         <div>{this.timeDisplay()}</div>
                     </div>
                 </div>
