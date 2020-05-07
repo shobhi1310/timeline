@@ -14,6 +14,7 @@ export class Post extends Component {
 
     handleSubmit=(e)=>{
         const {post} = this.state
+        const {event_id} = this.props
         const user_id = window.sessionStorage.getItem('u_id')
         const main_id = window.sessionStorage.getItem('event_id')
         // e.preventDefault();
