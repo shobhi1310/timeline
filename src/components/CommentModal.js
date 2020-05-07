@@ -19,7 +19,7 @@ export class CommentModal extends Component {
                         {
                             (comments).map((comment)=>{
                                 return(
-                                    <CommentPopulator/>
+                                    <CommentPopulator comment={comment}/>
                                 )
                             })
                         }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 export class CommentPopulator extends Component {
     render() {
+        const {comment} = this.props
         let date = new Date();
         let time = date.toTimeString();
         return (
@@ -12,7 +13,7 @@ export class CommentPopulator extends Component {
                 <div className="dateTime">{time}</div>
                 <div className="post">
                     <p>
-                    eu nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper sit amet risus nullam eget felis eget nunc lobortis mattis
+                    {comment.post}
                     </p>
                 </div>
             </div>
