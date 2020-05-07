@@ -11,7 +11,8 @@ import CommentModal from './CommentModal';
 export class MainView extends Component {
     state={
         diff : [],
-        comments: []
+        comments: [],
+        event_id : ''
     }
 
     handleDateChange=(date)=>{
@@ -50,7 +51,8 @@ export class MainView extends Component {
         for(var i=0;i<events[0].events.length;i++){
             if(searchID === events[0].events[i]._id){
                 this.setState({
-                    comments : events[0].events[i].comments
+                    comments : events[0].events[i].comments,
+                    event_id : events[0].events[i]._id
                 })
             }
         }
@@ -60,12 +62,13 @@ export class MainView extends Component {
     closeComments=()=>{
         document.getElementById('comment-box').style.visibility = 'hidden';
         this.setState({
-            comments : []
+            comments : [],
+            event_id : ''
         })
     }
 
     render() {
-        const {comments} = this.state;
+        const {comments, event_id} = this.state;
         const {dates, nextStep, formatDate, events, diff, admin} = this.props;
         var today = new Date();
         today = formatDate(today);
@@ -107,7 +110,13 @@ export class MainView extends Component {
                         )
                     }
                 </div>
-                <CommentModal comments={comments} closeComments={this.closeComments} admin={admin} />
+                <CommentModal 
+                comments={comments} 
+                closeComments={this.closeComments} 
+                admin={admin} 
+                events={events}
+                event_id={event_id}
+                />
                 {
                     (admin && dates.stringDate === today) ? (<EventAdder nextStep={nextStep} />) : ('')
                 }

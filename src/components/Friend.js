@@ -36,6 +36,7 @@ export class Friend extends Component {
             var diff = [];
             axios.get(eventListUrl)
             .then((res)=>{
+                window.sessionStorage.setItem('event_id',res.data[0]._id)
                 fetchedEvents = res.data;
                 diff = this.diffSetter(res.data)
             })
@@ -80,6 +81,7 @@ export class Friend extends Component {
         const eventListUrl = 'http://localhost:5000/events/'+id+'/'+this.formatDate(date);
         axios.get(eventListUrl)
         .then((res)=>{
+            window.sessionStorage.setItem('event_id',res.data[0]._id)
             this.setState({
                 date : date,
                 stringDate: this.formatDate(date),
