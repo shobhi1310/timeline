@@ -2,24 +2,22 @@ import React, { Component } from 'react'
 
 export class Profile extends Component {
 
-    handleImage=(files)=>{
-        for (let i = 0; i < files.length; i++) {
-
-            const file = files[i];
-            
-            if (!file.type.startsWith('image/')){ 
-                continue 
-            }
-            
-            const img = document.createElement("img");
-            img.classList.add("obj");
-            img.file = file;
-            //preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
-            
-            const reader = new FileReader();
-            reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-            reader.readAsDataURL(file);
+    handleImage=(e)=>{
+        const file = e.target.files[0];
+        
+        if (!file.type.startsWith('image/')){ 
+            console.warn("Not an image file.") 
         }
+        
+        const img = document.getElementById('selected-pic');
+        img.classList.add("obj");
+        img.file = file;
+        //preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
+        
+        const reader = new FileReader();
+        reader.onload = ((aImg)=>{ return function(e) { aImg.src = e.target.result; }; })(img);
+        reader.readAsDataURL(file);
+        console.log(reader);
       }
 
     render() {
@@ -29,7 +27,7 @@ export class Profile extends Component {
                     <form>
                         <div class="form-group row">
                             <label className="profile-pic">
-                                <input type="file"/>
+                                <input type="file" onChange={this.handleImage} />
                                 <img src="./assets/ceo.png" id="selected-pic" />
                             </label>
                             <div>
