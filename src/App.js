@@ -22,8 +22,8 @@ class App extends React.Component{
         <Header/>
         {/* <Populator/> */}
         {/* <SignUp/> */}
-        <Profile/>
-        {/* <EventFiller/> */}
+        {/* <Profile/> */}
+        <EventFiller/>
         {/* <SearchFriends/> */}
         {/* <Post/> */}
         {/* <CommentPopulator/> */}
