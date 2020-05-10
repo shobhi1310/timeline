@@ -1,14 +1,38 @@
 import React, { Component } from 'react'
 
 export class Profile extends Component {
+
+    handleImage=(files)=>{
+        for (let i = 0; i < files.length; i++) {
+
+            const file = files[i];
+            
+            if (!file.type.startsWith('image/')){ 
+                continue 
+            }
+            
+            const img = document.createElement("img");
+            img.classList.add("obj");
+            img.file = file;
+            //preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
+            
+            const reader = new FileReader();
+            reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+            reader.readAsDataURL(file);
+        }
+      }
+
     render() {
         return (
             <div className="container" style={{position: "absolute", left: "27%",marginTop: "6%"}}>
                 <div>
                     <form>
-                        <div class="media form-group row">
-                            <img src="./logo192.png" class="mr-3 col-sm-2" alt="..."/>
-                            <div class="media-body">
+                        <div class="form-group row">
+                            <label className="profile-pic">
+                                <input type="file"/>
+                                <img src="./assets/ceo.png" id="selected-pic" />
+                            </label>
+                            <div>
                                 <h5 class="mt-0">Choose your Gravatar</h5>
                             </div>
                         </div>

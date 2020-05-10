@@ -22,9 +22,9 @@ class App extends React.Component{
         <Header/>
         {/* <Populator/> */}
         {/* <SignUp/> */}
-        {/* <Profile/> */}
+        <Profile/>
         {/* <EventFiller/> */}
-        <SearchFriends/>
+        {/* <SearchFriends/> */}
         {/* <Post/> */}
         {/* <CommentPopulator/> */}
         {/* <CommentModal/> */}

@@ -236,3 +236,22 @@ body {
   font-weight: 400;
   text-align: center;
 }
+
+input[type="file"] {
+  display: none;
+}
+
+.profile-pic {
+  border: 1px solid #ccc;
+  display: inline-block;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+
+#selected-pic{
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
