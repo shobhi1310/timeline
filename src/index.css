@@ -334,8 +334,11 @@ input[type="file"] {
 }
 
 #dropzone{
-  margin:30px; 
   width:500px; 
   height:300px; 
-  border:1px dotted grey;
+  border:3px dotted grey;
+}
+
+#set li{
+  margin: 3px;
 }
