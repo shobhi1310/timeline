@@ -12,12 +12,13 @@ export class Profile extends Component {
         const img = document.getElementById('selected-pic');
         img.classList.add("obj");
         img.file = file;
-        //preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
         
         const reader = new FileReader();
         reader.onload = ((aImg)=>{ return function(e) { aImg.src = e.target.result; }; })(img);
-        reader.readAsDataURL(file);
-        console.log(reader);
+        reader.readAsArrayBuffer(file);
+        reader.onload=(event)=>{
+            // event.target.result
+        }
       }
 
     render() {

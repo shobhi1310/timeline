@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 export default class EventFiller extends Component {
 
     state={
-        file_exists : false
+        file_exists : false,
+        files : []
     }
 
     dragEnter=(e)=>{
@@ -20,33 +21,50 @@ export default class EventFiller extends Component {
         e.stopPropagation();
         e.preventDefault();
         const filesArray = e.dataTransfer.files;
-        this.handleFile(filesArray[0]);
+        if (!filesArray[0].type.startsWith('image/')){ 
+            console.warn("Not an image file.") 
+        }else{
+            this.handleFile(filesArray[0]);
+        }
     }
     
     handleFile=(file)=>{
-        const {file_exists} = this.state
+        const {file_exists, files} = this.state
+        let copy = files;
         const li = document.createElement('li');
         const img = document.createElement("img");
+
         img.src = URL.createObjectURL(file);
         img.height = 60;
         img.onload = function() {
             URL.revokeObjectURL(this.src);
-          }
+        }
+
+        const reader = new FileReader();
+        reader.readAsArrayBuffer(file);
+        reader.onload=(event)=>{
+            copy.push(event.target.result);
+        }
+
         li.appendChild(img);
         if(!file_exists){
             const dropzone = document.getElementById('dropzone');
             dropzone.innerHTML = '';
             const ul = document.createElement('ul');
+            ul.setAttribute('class', "list-unstyled");
             ul.setAttribute('id',"set");
             ul.appendChild(li);
             dropzone.appendChild(ul);
             this.setState({
-                file_exists : true
+                file_exists : true,
+                files : copy
             })
         }else{
             const ul = document.getElementById('set');
-            // console.log(ul);
             ul.appendChild(li);
+            this.setState({
+                files : copy
+            })
         }
     }
 
