@@ -5,7 +5,8 @@ export default class EventFiller extends Component {
     state={
         title:'',
         description:'',
-        tagged_photos:[]
+        tagged_photos:[],
+        files : []
     }
     componentWillMount=()=>{
         const {values,dates} = this.props;
@@ -52,6 +53,34 @@ export default class EventFiller extends Component {
             [input]: e.target.value
         });
     }
+    componentDidMount=()=>{
+        const dropzone = document.getElementById("dropzone");
+            dropzone.ondragover = dropzone.ondragenter = function(event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+    
+            dropzone.ondrop = function(event) {
+                event.stopPropagation();
+                event.preventDefault();
+
+                const filesArray = event.dataTransfer.files;
+                for (let i=0; i<filesArray.length; i++) {
+                    const file = filesArray[i];
+                    // sendFile(file);
+                    console.log(file);
+                }
+            }
+    }
+    sendFile=(file)=>{
+        // if(!file.type.startsWith('/image/')){
+        //     // do something
+        // }
+        const {files} = this.state;
+        const fileList = document.getElementById("fileList");
+        const list = document.createElement("ul");
+        fileList.appendChild(list);
+    }
     render() {
         return (
             <div className="container" style={{marginTop:"2%",position:"absolute",left:"20%"}}>
@@ -75,7 +104,9 @@ export default class EventFiller extends Component {
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Tag Photos</label>
                         <div class="col-sm-5">
-                            <input type="file" id="photos" />
+                            <div id="dropzone" >
+                                <div id="filelist">Drag & drop your file here...</div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">

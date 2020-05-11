@@ -35,6 +35,24 @@ export class Profile extends Component {
         }
     }
 
+    handleImage=(e)=>{
+        const file = e.target.files[0];
+        
+        if (!file.type.startsWith('image/')){ 
+            console.warn("Not an image file.") 
+        }
+        
+        const img = document.getElementById('selected-pic');
+        img.classList.add("obj");
+        img.file = file;
+        //preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
+        
+        const reader = new FileReader();
+        reader.onload = ((aImg)=>{ return function(e) { aImg.src = e.target.result; }; })(img);
+        reader.readAsDataURL(file);
+        console.log(reader);
+      }
+
     render() {
         const {editState} = this.state;
         const {values, handleChange} = this.props;
@@ -42,10 +60,13 @@ export class Profile extends Component {
         return (
             <div className="container" style={{position: "absolute", left: "27%",marginTop: "6%"}}>
                 <div>
-                    <form onSubmit={this.handleSubmit}>
-                        <div class="media form-group row">
-                            <img src="./logo192.png" class="mr-3 col-sm-2" alt="..."/>
-                            <div class="media-body">
+                    <form>
+                        <div class="form-group row">
+                            <label className="profile-pic">
+                                <input type="file" onChange={this.handleImage} />
+                                <img src="./assets/ceo.png" id="selected-pic" />
+                            </label>
+                            <div>
                                 <h5 class="mt-0">Choose your Gravatar</h5>
                             </div>
                         </div>
