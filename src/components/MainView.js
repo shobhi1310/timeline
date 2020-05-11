@@ -1,18 +1,21 @@
 import React, { Component } from 'react'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.min.css';
-import {Link} from 'react-router-dom';
-import axios from 'axios';
+import * as jquery from 'jquery'
 
 import Populator from './Populator';
 import EventAdder from './EventAdder';
 import CommentModal from './CommentModal';
+import DescrModal from './DescrModal';
 
 export class MainView extends Component {
     state={
         diff : [],
         comments: [],
-        event_id : ''
+        event_id : '',
+        descr : '',
+        photos : [],
+        title: ''
     }
 
     handleDateChange=(date)=>{
@@ -47,7 +50,6 @@ export class MainView extends Component {
     showComments=(e)=>{
         const {events} = this.props;
         const searchID = e.target.id;
-        // console.log(searchID)
         for(var i=0;i<events[0].events.length;i++){
             if(searchID === events[0].events[i]._id){
                 this.setState({
@@ -67,9 +69,25 @@ export class MainView extends Component {
         })
     }
 
+    showEventDetail=(e)=>{
+        console.log(e.target.id);
+        const {events} = this.props;
+        const searchID = e.target.id;
+        for(var i=0;i<events[0].events.length;i++){
+            if(searchID === events[0].events[i]._id){
+                this.setState({
+                    descr : events[0].events[i].description,
+                    photos : events[0].events[i].tagged_photos,
+                    title : events[0].events[i].title
+                })
+            }
+        }
+    }
+
     render() {
-        const {comments, event_id} = this.state;
+        const {comments, event_id, photos, descr, title} = this.state;
         const {dates, nextStep, formatDate, events, diff, admin} = this.props;
+        const eventParcel = {descr, photos, title}
         var today = new Date();
         today = formatDate(today);
         var combined = this.combiner(events,diff)
@@ -99,6 +117,7 @@ export class MainView extends Component {
                                     event={each.event} 
                                     styler={each.diff} 
                                     showComments={this.showComments}
+                                    showEventDetail={this.showEventDetail}
                                     />
                                 )
                             })
@@ -120,6 +139,9 @@ export class MainView extends Component {
                 {
                     (admin && dates.stringDate === today) ? (<EventAdder nextStep={nextStep} />) : ('')
                 }
+                <DescrModal
+                eventParcel={eventParcel}
+                />
             </div>
         )
     }
