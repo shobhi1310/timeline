@@ -94,7 +94,7 @@ export default class EventFiller extends Component {
                             onDragOver={this.dragOver}
                             onDrop={this.onFileDrop}
                             >
-                                Drag & drop your file here...
+                              <p>Drag & drop your file here...</p>
                             </div>
                         </div>
                         </div>
