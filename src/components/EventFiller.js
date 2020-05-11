@@ -6,7 +6,6 @@ export default class EventFiller extends Component {
         title:'',
         description:'',
         tagged_photos:[],
-        files : [],
         file_exists : false
     }
     componentWillMount=()=>{
@@ -55,16 +54,6 @@ export default class EventFiller extends Component {
         });
     }
     
-    sendFile=(file)=>{
-        // if(!file.type.startsWith('/image/')){
-        //     // do something
-        // }
-        const {files} = this.state;
-        const fileList = document.getElementById("fileList");
-        const list = document.createElement("ul");
-        fileList.appendChild(list);
-    }
-
     dragEnter=(e)=>{
         e.stopPropagation();
         e.preventDefault();
@@ -87,8 +76,8 @@ export default class EventFiller extends Component {
     }
     
     handleFile=(file)=>{
-        const {file_exists, files} = this.state
-        let copy = files;
+        const {file_exists, tagged_photos} = this.state
+        let copy = tagged_photos;
         const li = document.createElement('li');
         const img = document.createElement("img");
 
@@ -115,13 +104,13 @@ export default class EventFiller extends Component {
             dropzone.appendChild(ul);
             this.setState({
                 file_exists : true,
-                files : copy
+                tagged_photos : copy
             })
         }else{
             const ul = document.getElementById('set');
             ul.appendChild(li);
             this.setState({
-                files : copy
+                tagged_photos : copy
             })
         }
     }

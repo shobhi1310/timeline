@@ -19,7 +19,7 @@ export class Home extends Component {
             occupation: 'student',
             start_time: '',
             end_time:'',
-            gravatar:'',
+            gravatar: [],
             logged_in: false,
             date: new Date(),
             stringDate:'',
@@ -88,6 +88,12 @@ export class Home extends Component {
         this.setState({
             [input]: e.target.value
         });
+    }
+
+    handleGravatar=(copy)=>{
+        this.setState({
+            gravatar : copy
+        })
     }
 
     handleDateChange=(date)=>{
@@ -180,6 +186,7 @@ export class Home extends Component {
                     <Profile
                     nextStep={this.nextStep}
                     handleChange={this.handleChange}
+                    handleGravatar={this.handleGravatar}
                     values={values}
                     />
                 )

@@ -36,6 +36,7 @@ export class Profile extends Component {
     }
 
     handleImage=(e)=>{
+        const {values, handleGravatar} = this.props;
         const file = e.target.files[0];
         
         if (!file.type.startsWith('image/')){ 
@@ -46,11 +47,13 @@ export class Profile extends Component {
         img.classList.add("obj");
         img.file = file;
         
+        let copy = values.gravatar;
         const reader = new FileReader();
         reader.onload = ((aImg)=>{ return function(e) { aImg.src = e.target.result; }; })(img);
         reader.readAsArrayBuffer(file);
         reader.onload=(event)=>{
-            // event.target.result
+            copy.push(event.target.result)
+            handleGravatar(copy);
         }
       }
 
@@ -65,7 +68,7 @@ export class Profile extends Component {
                         <div class="form-group row">
                             <label className="profile-pic">
                                 <input type="file" onChange={this.handleImage} />
-                                <img src="./assets/ceo.png" id="selected-pic" />
+                                <img src="./assets/ceo.png" id="selected-pic" />  {/* handle this while loading */}
                             </label>
                             <div>
                                 <h5 class="mt-0">Choose your Gravatar</h5>
