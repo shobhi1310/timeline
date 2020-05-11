@@ -342,3 +342,12 @@ input[type="file"] {
 #set li{
   margin: 3px;
 }
+
+#dropzone p{
+  text-align: center;
+  color:#9d00ff94;
+  font-style: italic;
+  position: relative;
+  top: 40%;
+  font-size: x-large;
+}
