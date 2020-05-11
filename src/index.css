@@ -262,3 +262,7 @@ input[type="file"] {
   height:300px; 
   border:1px dotted grey;
 }
+
+#set li{
+  margin: 2px;
+}

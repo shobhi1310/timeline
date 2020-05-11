@@ -1,23 +1,55 @@
 import React, { Component } from 'react'
 
 export default class EventFiller extends Component {
-    componentDidMount=()=>{
-        const dropzone = document.getElementById("dropzone");
-            dropzone.ondragover = dropzone.ondragenter = function(event) {
-                event.stopPropagation();
-                event.preventDefault();
-            }
-    
-            dropzone.ondrop = function(event) {
-                event.stopPropagation();
-                event.preventDefault();
 
-                const filesArray = event.dataTransfer.files;
-                // for (let i=0; i<filesArray.length; i++) {
-                //     sendFile(filesArray[i]);
-                // }
-            }
+    state={
+        file_exists : false
     }
+
+    dragEnter=(e)=>{
+        e.stopPropagation();
+        e.preventDefault();
+    }
+
+    dragOver=(e)=>{
+        e.stopPropagation();
+        e.preventDefault();
+    }
+    
+    onFileDrop=(e)=>{
+        e.stopPropagation();
+        e.preventDefault();
+        const filesArray = e.dataTransfer.files;
+        this.handleFile(filesArray[0]);
+    }
+    
+    handleFile=(file)=>{
+        const {file_exists} = this.state
+        const li = document.createElement('li');
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(file);
+        img.height = 60;
+        img.onload = function() {
+            URL.revokeObjectURL(this.src);
+          }
+        li.appendChild(img);
+        if(!file_exists){
+            const dropzone = document.getElementById('dropzone');
+            dropzone.innerHTML = '';
+            const ul = document.createElement('ul');
+            ul.setAttribute('id',"set");
+            ul.appendChild(li);
+            dropzone.appendChild(ul);
+            this.setState({
+                file_exists : true
+            })
+        }else{
+            const ul = document.getElementById('set');
+            // console.log(ul);
+            ul.appendChild(li);
+        }
+    }
+
     render() {
         return (
             <div className="container" style={{marginTop:"2%",position:"absolute",left:"20%"}}>
@@ -39,7 +71,13 @@ export default class EventFiller extends Component {
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Tag Photos</label>
                         <div class="col-sm-5">
                         <div>
-                            <div id="dropzone" >Drag & drop your file here...</div>
+                            <div id="dropzone"
+                            onDraEnter={this.dragEnter}
+                            onDragOver={this.dragOver}
+                            onDrop={this.onFileDrop}
+                            >
+                                Drag & drop your file here...
+                            </div>
                         </div>
                         </div>
                     </div>
