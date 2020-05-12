@@ -44,16 +44,16 @@ export class Profile extends Component {
         }
         
         const img = document.getElementById('selected-pic');
-        img.classList.add("obj");
-        img.file = file;
+        img.src = URL.createObjectURL(file);
+        img.onload = function() {
+            URL.revokeObjectURL(this.src);
+        }
         
-        let copy = values.gravatar;
         const reader = new FileReader();
         reader.onload = ((aImg)=>{ return function(e) { aImg.src = e.target.result; }; })(img);
-        reader.readAsArrayBuffer(file);
+        reader.readAsDataURL(file);
         reader.onload=(event)=>{
-            copy.push(event.target.result)
-            handleGravatar(copy);
+            handleGravatar(event.target.result);
         }
       }
 
@@ -67,7 +67,7 @@ export class Profile extends Component {
                     <form>
                         <div class="form-group row">
                             <label className="profile-pic">
-                                <input type="file" onChange={this.handleImage} />
+                                <input type="file" onChange={this.handleImage} disabled={!editState} />
                                 <img src="./assets/ceo.png" id="selected-pic" />  {/* handle this while loading */}
                             </label>
                             <div>

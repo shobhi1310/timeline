@@ -19,7 +19,7 @@ export class Home extends Component {
             occupation: 'student',
             start_time: '',
             end_time:'',
-            gravatar: [],
+            gravatar: '',
             logged_in: false,
             date: new Date(),
             stringDate:'',
