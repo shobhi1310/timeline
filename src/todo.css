@@ -1,4 +1,4 @@
-.container {
+.todo {
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
@@ -47,7 +47,7 @@
     text-decoration: line-through;
   }
   
-  input[type="checkbox"] {
+  .todo-list input[type="checkbox"] {
     display: none;
   }
   
@@ -85,13 +85,13 @@
     pointer-events: none;
   }
   
-  form {
+  .js-form {
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
   
-  input[type="text"] {
+  .js-form input[type="text"] {
     width: 100%;
     padding: 10px;
     border-radius: 4px;
