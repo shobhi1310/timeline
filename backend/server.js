@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose =  require('mongoose');
 const bodyParser = require('body-parser');
-const jsonParser = bodyParser.json();
+const jsonParser = bodyParser.json({limit:'50mb'});
 
 require('dotenv').config();
 

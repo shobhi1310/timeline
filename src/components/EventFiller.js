@@ -88,9 +88,9 @@ export default class EventFiller extends Component {
         }
 
         const reader = new FileReader();
-        reader.readAsArrayBuffer(file);
+        reader.readAsDataURL(file);
         reader.onload=(event)=>{
-            copy.push(event.target.result);
+            copy.push({image:event.target.result});
         }
 
         li.appendChild(img);

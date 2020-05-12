@@ -17,7 +17,7 @@ const eventsSchema = new Schema({
             ],
             tagged_photos: [
                 {
-                    image : {type:Buffer},
+                    image : {type:String},
                 }
             ],
             milliTime : {type:String, required:true},

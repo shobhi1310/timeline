@@ -17,6 +17,7 @@ router.route('/create/:id').post((req,res)=>{
 router.route('/add/:id').post((req,res)=>{
     const user_id = req.params.id;
     const date = req.body.date;
+    // console.log(req.body);
     const event = {
         "title":req.body.title,
         'description':req.body.description,
@@ -24,7 +25,6 @@ router.route('/add/:id').post((req,res)=>{
         'milliTime': req.body.milliTime,
         'time' : req.body.time
     }
-    // var exists;
     Events.findOneAndUpdate({user_id:user_id,date:date},{$push:{events:event}})
     .then((output)=>{
         res.json(output);
