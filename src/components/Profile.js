@@ -23,13 +23,15 @@ export class Profile extends Component {
             
             axios.post(url,values)
             .then((res)=>{
-                window.location = '/profile';
+                console.log(res.data);
+                window.location = '/';
             })
         }else{
             const url = 'http://localhost:5000/users/create';
             axios.post(url,values)
             .then((res)=>{
                 window.sessionStorage.setItem('u_id',res.data._id);
+                window.localStorage.setItem('profile_pic',res.data._gravatar);
                 window.location = '/';
             })
         }
@@ -68,7 +70,7 @@ export class Profile extends Component {
                         <div class="form-group row">
                             <label className="profile-pic">
                                 <input type="file" onChange={this.handleImage} disabled={!editState} />
-                                <img src="./assets/ceo.png" id="selected-pic" />  {/* handle this while loading */}
+                                <img src={Buffer(values.gravatar).toString('utf8')} id="selected-pic" />  {/* handle this while loading */}
                             </label>
                             <div>
                                 <h5 class="mt-0">Choose your Gravatar</h5>
@@ -114,7 +116,7 @@ export class Profile extends Component {
                                     </div>
                                 ) : (
                                     <div class="col-sm-2">
-                                        <input id="profile-save" class="btn btn-primary" type="submit" value="Save"/>
+                                        <input id="profile-save" class="btn btn-primary" type="submit" value="Save" onClick={this.handleSubmit} />
                                     </div>
                                 )
                             }

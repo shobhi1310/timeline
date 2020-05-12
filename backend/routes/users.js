@@ -57,7 +57,7 @@ router.route('/update/:id').post((req,res)=>{
         end_time: req.body.end_time
     }
     Users.findByIdAndUpdate(req.params.id,updatedUser)
-    .then(()=>res.json('User updated'))
+    .then((user)=>res.json(user))
     .catch((err)=>{res.status(400).json('Error: ' + err)});    
 });
 
