@@ -9,6 +9,7 @@ import Home from './components/Home'
 import Friend from './components/Friend'
 import SearchFriend from './components/SearchFriends'
 import EventFiller from './components/EventFiller'
+import ToDo from './components/ToDo'
 
 class App extends React.Component{
   render(){
@@ -20,6 +21,7 @@ class App extends React.Component{
         <Route path='/search-friend' component={SearchFriend} />
         <Route path='/add-event' component={EventFiller} />
         <Route path='/friend' component={Friend} />
+        <Route path='/todo' component={ToDo}/>
       </Router>
     )
   }
