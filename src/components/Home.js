@@ -66,6 +66,7 @@ export class Home extends Component {
                     events: fetchedEvents,
                     diff : diff
                 });
+                window.localStorage.setItem('profile_pic',gravatar);
             })
         }
     }

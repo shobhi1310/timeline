@@ -23,7 +23,8 @@ export class Profile extends Component {
             
             axios.post(url,values)
             .then((res)=>{
-                console.log(res.data);
+                // console.log(res.data);
+                window.localStorage.setItem('profile_pic',values.gravatar);
                 window.location = '/';
             })
         }else{
@@ -31,7 +32,7 @@ export class Profile extends Component {
             axios.post(url,values)
             .then((res)=>{
                 window.sessionStorage.setItem('u_id',res.data._id);
-                window.localStorage.setItem('profile_pic',res.data._gravatar);
+                window.localStorage.setItem('profile_pic',res.data.gravatar);
                 window.location = '/';
             })
         }

@@ -28,7 +28,7 @@ class Populator extends React.Component {
                         <div className="line" style={{height:styler}}></div>
                         <div className="avatar">
                             {/* gravatar size now taken 24px */}
-                            <img src="assets/ceo.png" alt="gravatar"/>
+                            <img src={Buffer(window.localStorage.getItem('profile_pic')).toString('utf8')} alt="gravatar" style={{height:"24px",borderRadius:"12px"}}/>
                         </div>
                     </div>
                     <div className="context" style={{top:styler}} >
