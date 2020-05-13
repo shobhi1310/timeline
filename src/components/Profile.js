@@ -71,7 +71,11 @@ export class Profile extends Component {
                         <div class="form-group row">
                             <label className="profile-pic">
                                 <input type="file" onChange={this.handleImage} disabled={!editState} />
-                                <img src={Buffer(values.gravatar).toString('utf8')} id="selected-pic" />  {/* handle this while loading */}
+                                {
+                                    (values.gravatar!=='')
+                                    ?(<img src={Buffer(values.gravatar).toString('utf8')} id="selected-pic" />)
+                                    :(<img src='./assets/ceo.png' id="selected-pic" />)
+                                }
                             </label>
                             <div>
                                 <h5 class="mt-0">Choose your Gravatar</h5>
