@@ -36,9 +36,11 @@ export class Friend extends Component {
             var diff = [];
             axios.get(eventListUrl)
             .then((res)=>{
-                window.sessionStorage.setItem('event_id',res.data[0]._id)
-                fetchedEvents = res.data;
-                diff = this.diffSetter(res.data)
+                if(res.data.length>0){
+                    window.sessionStorage.setItem('event_id',res.data[0]._id)
+                    fetchedEvents = res.data;
+                    diff = this.diffSetter(res.data)
+                }
             })
             axios.get(url)
             .then(res=>{
@@ -59,6 +61,7 @@ export class Friend extends Component {
                     events: fetchedEvents,
                     diff : diff
                 });
+                window.localStorage.setItem('friend_pic',gravatar);
             })
         }
     }

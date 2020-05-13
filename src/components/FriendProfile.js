@@ -24,7 +24,7 @@ export class FriendProfile extends Component {
         return (
             <div className="profile-box">
                 <div className="friend-profile-icon">
-                    <img src="./assets/ceo.png" />
+                    <img src={Buffer(window.localStorage.getItem('friend_pic')).toString('utf8')} alt="gravatar" style={{height:"30px",borderRadius:"15px"}}/>
                 </div>
                 <div className="friend-id">{values.username}</div>
                 <div className="friend-content">
