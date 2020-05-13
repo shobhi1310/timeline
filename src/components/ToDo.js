@@ -6,6 +6,14 @@ export class ToDo extends Component {
         todoItems : []
     }
 
+    componentWillMount=()=>{
+        if(window.localStorage.getItem('todoItems')){
+            this.setState({
+                todoItems : JSON.parse(window.localStorage.getItem('todoItems'))
+            })
+        }
+    }
+
     componentDidMount=()=>{
         var list = document.querySelector('.js-todo-list');
         list.addEventListener('click',event=>{
@@ -18,10 +26,26 @@ export class ToDo extends Component {
                 this.deleteTodo(itemkey);
             }
         });
+        let todoItems = [...this.state.todoItems];
+
+        (todoItems).map((todo)=>{
+            var todolist = document.querySelector(".js-todo-list");
+            todolist.insertAdjacentHTML('beforeend',
+            `<li class="todo-item" data-key="${todo.id}">
+            <input id="${todo.id}" type="checkbox"/>
+            <label for="${todo.id}" class="tick js-tick"></label>
+            <span>${todo.text}</span>
+            <button class="delete-todo js-delete-todo">
+                <svg><use href="#delete-icon"></use></svg>
+            </button>
+            </li>
+            `);
+        })
     }
 
     toggleDone=(key)=>{
-        const {todoItems} = this.state
+        let todoItems = [...this.state.todoItems];
+
         var index = todoItems.findIndex(item => item.id===Number(key));
         todoItems[index].checked = !todoItems[index].checked;
 
@@ -31,10 +55,14 @@ export class ToDo extends Component {
         }else{
             item.classList.remove("done");
         }
+
+        this.setState({ todoItems });
+        window.localStorage.setItem('todoItems',JSON.stringify(todoItems));
     }
 
     deleteTodo=(key)=>{
-        let todoItems = [...this.state.todoItems]
+        let todoItems = [...this.state.todoItems];
+
         todoItems = todoItems.filter(item=> item.id!==Number(key))
         var item = document.querySelector(`[data-key='${key}']`);
         item.remove();
@@ -43,11 +71,12 @@ export class ToDo extends Component {
         if (todoItems.length === 0) {list.innerHTML = '';}
 
         this.setState({ todoItems });
+        window.localStorage.setItem('todoItems',JSON.stringify(todoItems));
     }
 
     addTodo=(text)=>{
 
-        let todoItems = [...this.state.todoItems]
+        let todoItems = [...this.state.todoItems];
 
         var todo = {
             text,
@@ -58,6 +87,7 @@ export class ToDo extends Component {
         todoItems.push(todo);
 
         this.setState({ todoItems });
+        window.localStorage.setItem('todoItems',JSON.stringify(todoItems));
 
         var todolist = document.querySelector(".js-todo-list");
         todolist.insertAdjacentHTML('beforeend',
