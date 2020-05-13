@@ -13,7 +13,11 @@ export class SearchPopulator extends Component {
         return (
             <div className="friend-holder" onClick={this.redirect} >
                 <div className="friend-icon">
-                    <img src="./assets/ceo.png" alt="icon" width="40px"/>   {/* we need to resize and set a proper image size */}  
+                    {
+                        (friend.gravatar!=='')
+                        ?(<img src={Buffer(friend.gravatar).toString('utf8')} alt="icon" style={{width:"40px",borderRadius:"20px"}}/>)
+                        :(<img src='./assets/ceo.png' alt="icon" style={{width:"40px",borderRadius:"20px"}}/>)
+                    }
                 </div>
                 <div className="friend-name">{friend.name}</div>
             </div>
