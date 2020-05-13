@@ -40,6 +40,10 @@ export class ToDo extends Component {
             </button>
             </li>
             `);
+            var item = document.querySelector(`[data-key='${todo.id}']`);
+            if(todo.checked){
+                item.classList.add("done");
+            }
         })
     }
 
