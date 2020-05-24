@@ -21,7 +21,7 @@ export class Login extends Component {
         .then((res)=>{
             if(res.data.length!==0){
                 // console.log(res.data[0]._id);
-                window.sessionStorage.setItem('u_id',res.data[0]._id);
+                window.localStorage.setItem('u_id',res.data[0]._id);
                 window.location = '/';
             }else{
                 document.getElementById('password').className += ' is-invalid';

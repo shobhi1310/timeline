@@ -28,11 +28,11 @@ export class Home extends Component {
             diff : []
         }
     }
-    componentDidMount=()=>{
+    componentWillMount=()=>{
         const {step, logged_in, date, stringDate} = this.state;
 
-        if(window.sessionStorage.getItem('u_id')){
-            const id = window.sessionStorage.getItem('u_id');
+        if(window.localStorage.getItem('u_id')){
+            const id = window.localStorage.getItem('u_id');
             const url = 'http://localhost:5000/users/details/'+id;
             var checkdate = this.formatDate(date);
             const eventListUrl = 'http://localhost:5000/events/'+id+'/'+checkdate;
@@ -44,10 +44,8 @@ export class Home extends Component {
                 fetchedEvents = res.data;
                 diff = this.diffSetter(res.data)
             })
-            axios.get(url)
-            .then(res=>{
-                const {name, username, password, occupation, start_time, end_time, gravatar} = res.data;
-
+            if(window.localStorage.getItem('user_profile')){
+                var user_profile = JSON.parse(window.localStorage.getItem('user_profile'));
                 if(this.props.step){
                     toStep = this.props.step;
                 }
@@ -55,19 +53,43 @@ export class Home extends Component {
                     admin : true,
                     logged_in : true,
                     step: toStep,
-                    name: name,
-                    username: username,
-                    password: password,
-                    occupation: occupation,
-                    start_time: start_time,
-                    end_time: end_time,
-                    gravatar: gravatar,
+                    name: user_profile.name,
+                    username: user_profile.username,
+                    password: user_profile.password,
+                    occupation: user_profile.occupation,
+                    start_time: user_profile.start_time,
+                    end_time: user_profile.end_time,
                     stringDate: this.formatDate(this.state.date),
                     events: fetchedEvents,
                     diff : diff
                 });
-                window.localStorage.setItem('profile_pic',gravatar);
-            })
+            }else{
+                axios.get(url)
+                .then(res=>{
+                    const {name, username, password, occupation, start_time, end_time, gravatar} = res.data;
+                    if(this.props.step){
+                        toStep = this.props.step;
+                    }
+                    this.setState({
+                        admin : true,
+                        logged_in : true,
+                        step: toStep,
+                        name: name,
+                        username: username,
+                        password: password,
+                        occupation: occupation,
+                        start_time: start_time,
+                        end_time: end_time,
+                        gravatar: gravatar,
+                        stringDate: this.formatDate(this.state.date),
+                        events: fetchedEvents,
+                        diff : diff
+                    });
+                    const values = {name, username, password, occupation, start_time, end_time, gravatar};
+                    window.localStorage.setItem('user_profile',JSON.stringify(values));
+                    window.localStorage.setItem('profile_pic',gravatar);
+                })
+            }
         }
     }
 
@@ -98,7 +120,7 @@ export class Home extends Component {
     }
 
     handleDateChange=(date)=>{
-        const id = window.sessionStorage.getItem('u_id');
+        const id = window.localStorage.getItem('u_id');
         const eventListUrl = 'http://localhost:5000/events/'+id+'/'+this.formatDate(date);
         axios.get(eventListUrl)
         .then((res)=>{

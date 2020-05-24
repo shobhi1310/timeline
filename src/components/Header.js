@@ -25,7 +25,7 @@ class Header extends React.Component{
                     </div>
                 </div>
                 {
-                (window.sessionStorage.getItem('u_id')) ? (<LogOut/>) : ('')
+                (window.localStorage.getItem('u_id')) ? (<LogOut/>) : ('')
                 }
             </nav>
         )

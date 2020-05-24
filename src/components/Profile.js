@@ -25,6 +25,7 @@ export class Profile extends Component {
             .then((res)=>{
                 // console.log(res.data);
                 window.localStorage.setItem('profile_pic',values.gravatar);
+                window.localStorage.setItem('user_profile',JSON.stringify(values));
                 window.location = '/';
             })
         }else{
@@ -33,6 +34,7 @@ export class Profile extends Component {
             .then((res)=>{
                 window.sessionStorage.setItem('u_id',res.data._id);
                 window.localStorage.setItem('profile_pic',res.data.gravatar);
+                window.localStorage.setItem('user_profile',JSON.stringify(values));
                 window.location = '/';
             })
         }
@@ -64,6 +66,9 @@ export class Profile extends Component {
         const {editState} = this.state;
         const {values, handleChange} = this.props;
         const occupations = ['student','working offcial','free lancer','hobbyst','other...'];
+        const details = JSON.parse(window.localStorage.getItem('user_profile'));
+        const gravatar = details.gravatar;
+        console.log(gravatar);
         return (
             <div className="container" style={{position: "absolute", left: "27%",marginTop: "6%"}}>
                 <div>
@@ -72,8 +77,8 @@ export class Profile extends Component {
                             <label className="profile-pic">
                                 <input type="file" onChange={this.handleImage} disabled={!editState} />
                                 {
-                                    (values.gravatar!=='')
-                                    ?(<img src={Buffer(values.gravatar).toString('utf8')} id="selected-pic" />)
+                                    (details)
+                                    ?(<img src={Buffer(gravatar).toString('utf8')} id="selected-pic" />)
                                     :(<img src='./assets/ceo.png' id="selected-pic" />)
                                 }
                             </label>
