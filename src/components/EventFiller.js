@@ -69,7 +69,8 @@ export default class EventFiller extends Component {
         e.preventDefault();
         const filesArray = e.dataTransfer.files;
         if (!filesArray[0].type.startsWith('image/')){ 
-            console.warn("Not an image file.") 
+            // console.warn("Not an image file.")
+            window.alert("Not an image file.");
         }else{
             this.handleFile(filesArray[0]);
         }
@@ -91,6 +92,7 @@ export default class EventFiller extends Component {
         reader.readAsDataURL(file);
         reader.onload=(event)=>{
             copy.push({image:event.target.result});
+            console.log(event.target);
         }
 
         li.appendChild(img);
