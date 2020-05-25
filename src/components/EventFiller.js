@@ -10,7 +10,7 @@ export default class EventFiller extends Component {
     }
     componentWillMount=()=>{
         const {values,dates} = this.props;
-        const id = window.sessionStorage.getItem('u_id');
+        const id = window.localStorage.getItem('u_id');
         const createUrl = 'http://localhost:5000/events/create/'+id;
         if(values.events.length===0){
             axios.post(createUrl,{date : dates.stringDate})
@@ -28,7 +28,7 @@ export default class EventFiller extends Component {
         const currDate = new Date();
         const milliTime = currDate.getTime();
         const time = currDate.toTimeString();
-        const id = window.sessionStorage.getItem('u_id');
+        const id = window.localStorage.getItem('u_id');
         const addUrl = 'http://localhost:5000/events/add/'+id;
         const event = {
             title : title,
@@ -90,6 +90,7 @@ export default class EventFiller extends Component {
 
         const reader = new FileReader();
         reader.readAsDataURL(file);
+        console.log(file);
         reader.onload=(event)=>{
             copy.push({image:event.target.result});
             console.log(event.target);
