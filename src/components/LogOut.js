@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 export class LogOut extends Component {
     logOut=()=>{
         window.localStorage.removeItem('u_id');
+        window.localStorage.removeItem('today_details');
         if(window.sessionStorage.getItem('friend_id')){
             window.sessionStorage.removeItem('friend_id')
         }
