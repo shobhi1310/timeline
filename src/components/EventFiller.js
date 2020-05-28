@@ -38,9 +38,13 @@ export default class EventFiller extends Component {
             milliTime : milliTime,
             time: time
         }
+        var details = JSON.parse(window.localStorage.getItem('today_details'));
+        // will have to check out this part ----- I think it should be done after adding to database.
         axios.post(addUrl,event)
         .then((res)=>{
             console.log(res.data);
+            details.events.push(res.data);
+            window.localStorage.setItem('today_details',details);
         })
         // window.location = '/';
     }

@@ -39,11 +39,20 @@ export class Home extends Component {
             let toStep = 4;
             var fetchedEvents = [];
             var diff = [];
-            axios.get(eventListUrl)
-            .then((res)=>{
-                fetchedEvents = res.data;
-                diff = this.diffSetter(res.data)
-            })
+            if(window.localStorage.getItem('today_details') && (JSON.parse(window.localStorage.getItem('today_details')).today === checkdate)){
+                var today_details = JSON.parse(window.localStorage.getItem('today_details'));
+                fetchedEvents = today_details.events;
+                diff = today_details.diff;
+            }else{
+                axios.get(eventListUrl)
+                .then((res)=>{
+                    fetchedEvents = res.data;
+                    diff = this.diffSetter(res.data)
+                })
+                const today = checkdate;
+                const today_details = {fetchedEvents, diff, today};
+                window.localStorage.setItem('today_details',JSON.stringify(today_details));
+            }
             if(window.localStorage.getItem('user_profile')){
                 var user_profile = JSON.parse(window.localStorage.getItem('user_profile'));
                 if(this.props.step){
